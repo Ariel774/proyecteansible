@@ -7,11 +7,11 @@ El projecte ha sigut fet y realitzat per mi Ariel Orley Zambrano amb l'autoritza
 Aquest projecte es basa en la recerca, estructuració i pràctica sobre el funcionamente del software Ansible.
 
 
-1. [Introducció]
-2. [Cos del treball]
-3. [Conclusió]
-4. [Webgrafia]
-5. [Annexos]
-6. [Agraïments]
+1. [Introducció](https://github.com/Ariel774/proyecteansible/tree/master/introduccion)
+2. [Cos del treball](https://github.com/Ariel774/proyecteansible/tree/master/desenvolupament)
+3. [Conclusió](https://github.com/Ariel774/proyecteansible/tree/master/conclusio)
+4. [Webgrafia](https://github.com/Ariel774/proyecteansible/tree/master/webgrafia)
+5. [Annexos](https://github.com/Ariel774/proyecteansible/tree/master/annexos)
+6. [Agraïments](https://github.com/Ariel774/proyecteansible/tree/master/agraiments)
 
 #### Ariel Orley Zambrano Zambrano
