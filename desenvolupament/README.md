@@ -4,7 +4,7 @@ Per començar a desenvolupar aquest projecte orientat a la pràctica he utilitza
 
 [¿Qué es Vagrant?](https://www.conasa.es/blog/vagrant-la-herramienta-para-crear-entornos-de-desarrollo-reproducibles/)
 
-Per fer-ho primer he hagut de crear en una zona de proves amb 1 controlador i 2 nodes a partir del fitxer de configuració controller i el fitxer node 1-2.
+Per fer-ho primer he hagut de crear en una zona de proves amb 1 controlador i 2 nodes a partir del [fitxer de configuració controller i el fitxer node 1-2](/annexos/#controllernode).
 
 Un cop hem pogut comprovar que les màquines han sigut creades segons els nostres fitxers *Vagrantfile* he tingut que <a>habilitar el SSH i l'autorització del usuari root<a> de forma remota.
 
