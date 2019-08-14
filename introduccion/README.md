@@ -1,25 +1,26 @@
 # Index
 
-1. Origen d' Ansible<br>
-2. ¿Qué es Ansible?<br>
-3. Ansible Playbooks<br>
-4. Iventaris<br>
-  4.1 Hosts i grups<br>
-  4.2 Hosts i variables<br>
-  4.3 Organización de variables<br>
-5. Rols e includes<br>
-6. Ansible portat a la pràctica<br>
-  6.1 Començant el projecte<br>
-  6.2 Creació de rols i configuració de màquina<br>
-  6.3 Webserver i configuració Apache<br>
-  6.4 Instalació i configuració de un WordPress<br>
-  6.5 Instalació i configuració de MySQL<br>
-  
-¿Origen d’ Ansible?
+1. [Origen d' Ansible](#origen)<br>
+2. [¿Qué es Ansible?]<br>
+3. [Ansible Playbooks]<br>
+4. [Iventaris]<br>
+  4.1 [Hosts i grups]<br>
+  4.2 [Hosts i variables]<br>
+  4.3 [Organización de variables]<br>
+5. [Rols e includes]<br>
+6. [Ansible portat a la pràctica]<br>
+  6.1 [Començant el projecte]<br>
+  6.2 [Creació de rols i configuració de màquina]<br>
+  6.3 [Webserver i configuració Apache]<br>
+  6.4 [Instalació i configuració de un WordPress]<br>
+  6.5 [Instalació i configuració de MySQL]<br>
+
+<a name="origen"></a>  
+## 1. Origen d’ Ansible
+
 Va néixer de la necessitat de poder administrador diversos servidors...
-¿Qué es Ansible?
 
-
+## 2. ¿Qué es Ansible?
 
 Ansible es un software que permet l’automatització, aprovisionament, gestió i el desplegament de aplicacions en diferents servidors de forma simultània i paral·lela. 
 
