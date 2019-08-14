@@ -62,7 +62,27 @@ La màquina que realitza la tasca de controlador reconeix als altres nodes mitja
 
 Una gran diferencia que podem trobar amb altres programes semblants com Chef o Puppet es que Ansible utilitza una arquitectura **sense agents**, l’arquitectura basada en agents, té com a finalitat instal·lar localment un procés de comunicació amb la màquina que fa de controlador, amb la nova arquitectura de Ansible sense agents, els nodes no es necessiten instal·lar ni executar ja que aquests mòduls son independents, aquesta arquitectura redueix la carrega de xarxa i prevé l’ús de control més concretes i potents per part del servidor.
 
+### 4. Inventaris
 
+Dintre d'Ansible existeixen diverses formes de indicar-li al software les tasques i/o gestions a orquestar que volem fer.
+
+La més fàcil es ficar les nostres màquines nodes al **inventari que Ansible té dintre del nostre sistema**, això es pot localitzar dintre de `/etc/ansible/hosts`.
+
+Com podem veure dintre del fitxer podem afegir de diverses formes els nostres hosts, partint desde un nom de domini, ip, ficar-los dintre d'un grup, delimitant-los amb un header per crear grups.
+
+11.png
+
+Per posar els nostres dos nodes dintre del nostre inventari un ficarem de la següent forma:
+
+12.png
+
+
+
+### 6. Ansible portat a la pràctica. (DESENVOLUPAMENT)
+
+L'estructura que utilitzarem per fer totes les nostres proves en Ansible serà la seguent:
+
+8.png
 
 
 
