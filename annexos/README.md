@@ -44,6 +44,10 @@ Primer de tot autoritzarem l’autorització per ssh del usuari root per els nos
 
 7.png
 
+Un cop hem habilitat el SSH per root a els nostres nodes, tenim que modificar activar i modificar la contrasenya dels nostres hosts que penjaram del servidor principal.
+
+13.png / 14.png
+
 Per tal de poder obtenir les mateixes credencials de root en tots els nodes utilitzarem la següent comanda en el **controlador** que ens crearà una nova clau:
 
 `$$ ssh-keygen –t rsa` (Aquesta comanda el que fa es generar unes claus per el ssh-copy-id)
