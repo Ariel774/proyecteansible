@@ -43,4 +43,26 @@ Utilitza YAML per a descriure les accions a realitzar y configurar les diferents
 En l’actualitat Ansible es distribueix en Fedora, Red Hat, Linux, CentOs, i Scientific Linux mitjançant els paquets EPEL (Extra Packages for Enterprise Linux).
 A més dels SO anteriorment mencionats, aquesta eina també es troba distribuïda i es podem trobar des de un buscador de paquets: https://goo.gl/y6ad6g
 
+6.png
+
+En el nostre cas utilitzaren una maquina virtual i descarregarem l’eina més actual per comandes.
+La podem trobar per dispositius Mac no obstant això **no està disponible per Windows**.
+
+### Arquitectura de Ansible.
+
+Com abans hem comentat Ansible es una eina que serveis per instal·lar, configurar i manejar diferents servidor de forma paral·lela, tenim que diferenciar que n’hi han dos tipus.
+
+- El controlador: Aquesta es la màquina des de la que comença tot el maneig dels diferents servidor els quals d’alguna forma ‘’penjent d’aquest’’, en aquest punt comença l’orquestació.
+
+- Node: Es maneja per el controlador mitjançant una connexió SSH.
+
+arquitectura.png
+
+La màquina que realitza la tasca de controlador reconeix als altres nodes mitjançant un inventari, que, per organitzar-ho fa un desplegament de mòduls sobre el protocol SSH, aquest desplegament fa que els mòduls desplegats no siguin controlats per el controlador, si no que **es la mateixa màquina remota la que s’encarrega de fer-ho** d’aquesta manera la **màquina local no consumeix recursos ni processos executant-se en segon pla.**
+
+Una gran diferencia que podem trobar amb altres programes semblants com Chef o Puppet es que Ansible utilitza una arquitectura **sense agents**, l’arquitectura basada en agents, té com a finalitat instal·lar localment un procés de comunicació amb la màquina que fa de controlador, amb la nova arquitectura de Ansible sense agents, els nodes no es necessiten instal·lar ni executar ja que aquests mòduls son independents, aquesta arquitectura redueix la carrega de xarxa i prevé l’ús de control més concretes i potents per part del servidor.
+
+
+
+
 
