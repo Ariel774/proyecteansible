@@ -13,6 +13,7 @@ Al llençar la comanda “sudo apt-get install ansible” ens donarà un error a
 
 `$ sudo add-apt-repository universe`
 
+<a name="controllernode"></a>
 ## Configuració de les nostres màquines mitjançant VAGRANT
 
 En el meu cas per a poder gestionar de forma molt més senzilla i ràpida totes les màquines virtuals he fet us de l’eina anomenada Vagrant, ja que no només em deixa la possibilitat de poder instal·lar cuántes màquines vulgui si no que puc implementar l’Ansible de forma més sencilla i ràpida, a més de poder aprofitar el codi per llençar els nodes que implementaré després.
