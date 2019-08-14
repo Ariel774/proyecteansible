@@ -35,6 +35,17 @@ I ara per veure si la nostra màquina s’ha configurat correctament fem un SSH 
 
 3.png 
 
+Configuració multi-màquina amb Vagrant
+
+Com ja hem vist abans Vagrant ens ha permès crear noves màquines amb un mateix fitxer *Vagrantfile* d’aquesta forma evitem iniciar les màquines una a una.
+
+Aquest nou fitxer el separarem amb una altre carpeta ja que serà dintre d’aquesta on posarem tota la configuració dels nostres nodes, de forma que podem mantenir separat el controlador principal que es on farem totes les tasques amb Ansible de tots els altres nodes que penjant d’aquest.
+
+El fitxer de Vagrant amb la configuració dels nostres nodes serà el següent:
+
+9.png
+
+
 <a name="ssh-passwd"></a>
 ## Habilitació del SSH i contrasenya per la correcta gestió de Ansible
 
