@@ -2,7 +2,7 @@
 
 Per començar a desenvolupar aquest projecte orientat a la pràctica he utilitzat un recurs molt innovador per crear, modificar i gestionar les meves màquines virtuals a partir de Virtual-Box, això ho he fet amb Vagrant.
 
-<a>¿Qué es Vagrant?<a>
+[¿Qué es Vagrant?](https://www.conasa.es/blog/vagrant-la-herramienta-para-crear-entornos-de-desarrollo-reproducibles/)
 
 Per fer-ho primer he hagut de crear en una zona de proves amb 1 controlador i 2 nodes a partir del fitxer de configuració controller i el fitxer node 1-2.
 
