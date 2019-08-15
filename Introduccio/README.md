@@ -77,6 +77,8 @@ Una gran diferencia que podem trobar amb altres programes semblants com Chef o P
 
 <a name="moduls"></a>  
 ### 3.1 Mòdulos PAT, usuaris i grups
+
+_Mòduls - Serveïs_
 En Ansible per poder utilitzar un dels seus mòduls que venem predefinits tenim que fer us del paràmetre `-m`.
 Alguns d'aquests mòduls podem ser **yum, apt, o service** això ens servirà per instalar els nostres programes als nostres diferents nodes.
 
@@ -84,7 +86,9 @@ En aquest sencill exemple procedirem a instalar el paquet o mòdul NTP.
 
 `$ansible all -b -m apt -a "name=ntp state=installed"`
 
-23.png
+22.png
+
+Com s' observa en la captura comproven que en el node amb l'IP 192.168.10.101 el pàquet NTP ja es trova instal·lat, en canvi en la IP 192.168.10.102 encara no el té, Ansible té l'avantatge que comprova el servidor penjant que no tingui el mòdul i l'instal·la sense donar cap problema de tornar a reinstalar el mòdul un altre cop per el servidor.
 
 * Podem desglossar la comanda de la següent manera:
  * "-a" En aquest paràmetre procedirem a pasar el paquet (name) juntament amb l'estat (state).
@@ -92,6 +96,15 @@ En aquest sencill exemple procedirem a instalar el paquet o mòdul NTP.
  * "-m" Es el mòdul en cuestió.
 
 D'aquesta forma ens evitem tenir que anar a cada servidor fer un SSH i instal·lar el paquet.
+
+
+Ara comproven que segons Ansible el paquet NTP es trova en estat **SUCCESS** que significa que no hi ha hagut cap canvi en les màquines i el mòdul NTP té un **state=installed** correcte.
+
+Si canviem l' *state* per "name=ntp **state=absent"** comprovaren que l'output és que ha eliminat el mòdul, com si es tractès d'un `remove`.
+
+24.png
+
+Un
 
 ## 4. Inventaris
 
