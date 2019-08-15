@@ -78,7 +78,8 @@ Una gran diferencia que podem trobar amb altres programes semblants com Chef o P
 <a name="moduls"></a>  
 ### 3.1 Mòdulos PAT, usuaris i grups
 
-_Mòduls - Serveïs_
+__Mòduls - Serveïs__
+
 En Ansible per poder utilitzar un dels seus mòduls que venem predefinits tenim que fer us del paràmetre `-m`.
 Alguns d'aquests mòduls podem ser **yum, apt, o service** això ens servirà per instalar els nostres programes als nostres diferents nodes.
 
@@ -97,14 +98,41 @@ Com s' observa en la captura comproven que en el node amb l'IP 192.168.10.101 el
 
 D'aquesta forma ens evitem tenir que anar a cada servidor fer un SSH i instal·lar el paquet.
 
-
 Ara comproven que segons Ansible el paquet NTP es trova en estat **SUCCESS** que significa que no hi ha hagut cap canvi en les màquines i el mòdul NTP té un **state=installed** correcte.
 
 Si canviem l' *state* per "name=ntp **state=absent"** comprovaren que l'output és que ha eliminat el mòdul, com si es tractès d'un `remove`.
 
 24.png
 
-Un
+Un cop tenim el nostre pàquet NTP instal·lat ja podem procedir a comprovar el seu "Status" amb la comanda `$ansible all -b -a "service ntp status`.
+
+25.png
+
+__Usuaris i grups__
+
+Gràcies a Ansible, ara remotament podem administrar, gestionar, crear i modificar usuaris i grups desde el nostre node principal controller, per exemple si nosaltres volguessim afegir un grup anomenat "ASIX" ho fariem amb la següent comanda amb el mòdul "group":
+
+* `$ansible all -b -m group -a "name=asix state=present"`(En aquest cas el **PRESENT** no vol dir instalar, si no que estigui present).
+
+26.png
+
+En la captura es pot observa que Ansible després de crear el grup també et diu el nom d'aquest juntament amb el seu GID, a més he posat una captura amb les dues comandes dues vegades perquè es pugui veure com en la primera part es detecta un canvi i en la segona ens dona un **SUCCESS** sense cap modificació.
+
+Si ara volem crear un usuari dintre d'un grup, i al mateix temps crear la seva home, deurient de fer-ho de la següent forma amb el mòdul "user":
+
+* `$ansible all -b -m user -a "name=ariel group=asix createhome=yes"`
+
+27.png
+
+De la mateixa forma que amb el grup això també ens dona un output amb les diferents variables que tenim del nostre usuari, gid, home i grup.
+
+Comproven que l'usuari existeix com a tal:
+
+28.png
+
+Com observen ha creat l'usuari en el servidor amb l'IP acabada en .101, però de la mateixa forma també ho farà en l'altre.
+
+Més informació sobre els usuaris i grups [aqui](https://docs.ansible.com/ansible/latest/modules/user_module.html)
 
 ## 4. Inventaris
 
