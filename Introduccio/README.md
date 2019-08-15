@@ -134,6 +134,64 @@ Com observen ha creat l'usuari en el servidor amb l'IP acabada en .101, però de
 
 Més informació sobre els usuaris i grups [aqui](https://docs.ansible.com/ansible/latest/modules/user_module.html)
 
+__Arxius i directoris__
+
+Aquest mòdul es un dels més utilitzats en l'actualitat, ja que degut a que nosaltres podem tenir diverses configuracions de Apache, PHP, MySQL... volem mantenir un mateix mòdul que estigui relacionat amb el mateix sistema de arxius i directoris d'aquesta manera eviten possibles incongruencies durant la creació dels directoris o fitxers.
+
+* La comanda per veure l' **ESTAT** del fitxer o directori en questió es la següent:
+
+ * `$ansible all -b -m stat -a "path=/etc/passwd"`
+
+29.png
+
+Mitjançant aquesta comanda podem observa el path del fitxer, si es executable, la seva mida, i moltes altres caràcteristiques d'aquest.
+
+* Per **COPIAR** un fitxer partint d'un origen cap a un destí tenim que emplear aquesta linia de codi:
+
+ * `$ansible all -b -m copy -a "src=/etc/hosts dest=/home/ariel/hosts`
+ 
+30.png
+
+Com observem es pot veure la mida del fitxer, el seu propietari i la destinació d'aquest.
+
+**Important: si al paràmetre src posem una barra '/' al final, només copiarà els fitxers que estiguin dintre del directori cap al destí per el que la carpeta en si no es copiarà**
+
+Ara utilitzarem el mòdul anometat **Fetch** que fa el mateix que el copy però descarregar els fitxers cap al nostre controlador.
+
+* Aquesta comanda serveix per **DESCARREGAR** fitxers o directoris, i té el gran avantatge que encara que nosaltres descarreguessim fitxers de molts nodes **no els sobreescriurà**.
+
+ * `$ansible all -b -m fetch -a "src=/home/ariel/hosts dest=/home/vagrant"
+ 
+ 31.png
+
+Com podem observar ens crea dos directoris amb l'IP dels nostres servidors.
+
+Per la creació modificació de fitxers i carpetes, juntament amb altres paràmetres d'aquests utilitzarem el mòdul "FILE".
+
+* En aquest petit exemple crearem un **FITXER** amb els permissos 644.
+
+ * `$ansible all -b -m file -a "dest=/home/ariel/prova1 mode=644 state=touch"`
+ 
+ 32.png
+
+* Per crear una **CARPETA** utilitzarem la següent comanda.
+
+ * `$ansible all -b -m file -a "dest=/home/ariel/ASIX mode=644 state=directory"`
+ 
+ 33.png
+
+Comproven que existeixen:
+
+34.png
+
+* Si volem eliminar un fitxer o carpeta nomès deuriem de posar en **state=absent**.
+
+ * `$ansible all -b -m file -a "dest=/home/ariel/ASIX mode=644 state=absent"`
+
+35.png
+
+Per veure més informació sobre els paràmetres a posar, [aqui](https://docs.ansible.com/ansible/latest/modules/file_module.html).
+
 ## 4. Inventaris
 
 Dintre d'Ansible existeixen diverses formes de indicar-li al software les tasques i/o gestions a orquestar que volem fer.
