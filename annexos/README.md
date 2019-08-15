@@ -87,6 +87,14 @@ Per defecte, Ansible executa les comandes de forma paral·lela per acabar abans,
 
 * Comprovació de la nostra memòria cau per poder comprovar que tenim espai suficient per poder instalar un WordPress o Apache.
  * `$ansible all -a "free -m"`
+ 
+### FACTS
+
+Els facts son els detalls de un servidor o grup de servidors, aquesta comanda ens permet obtenir una llista exhaustiva dels detalls del nostres nodes.
+
+Per exemple en les següents captures podem veure les IPs del nostre servidor, la data y hora amb segons, el mes, el SO, la Home, entre altres caràcteristiques.
+
+20.png 21.png
 
 
   
