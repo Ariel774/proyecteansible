@@ -61,7 +61,7 @@ Ara afegirem la contrasenya rood dels nostres nodes dintre del nostre host-contr
 També cal tenir present que no sempre realitzarem tasques com a root de forma que també copiarem la contrasenya del usuari, en aquest cas serà el de Vagrant.
 
 `$vagrant@cotroler: ssh-copy-id vagrant@192.168.10.101` << Aquesta comanda s'ha d'emprà a els dos nodes per evitar problemes de connexió  amb les comandes de Ansible.
-
+<a name="comandasbasicas"></a>
 ## Primeres comandes bàsiques de Ansible (Comandes AD-HOC)
 
 Ansible té la gran facilitat de deixar de banda les tasques antigues con per exemple tenir que entrar per SSH a cadascun dels nostres servidors descarregar el WordPress, Apache o qualsevol altre servici e instal·lar-ho de forma seqüencial un per un, amb unes sencilles comandes podem realitzar un manteniment e instal·lació dels nostres serveis de forma paral·lela i conjunta de tots els nostres nodes de forma segura i evitant així problemes d’ incongruència.
