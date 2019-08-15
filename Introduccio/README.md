@@ -1,8 +1,15 @@
 # Index
 
 1. [Origen d' Ansible](#origen)<br>
-2. [¿Qué es Ansible?]<br>
-3. [Ansible Playbooks]<br>
+2. [¿Qué es Ansible?](#ansible)<br>
+3. [Ansible Playbooks](#playbooks)<br>
+  3.1 [Mòduls PAT, usuaris i grups](#moduls)<br>
+  3.2 [Arxius i directoris]
+  3.3 [Crones]
+  3.4 [Playbooks i YAML]
+  3.5 [Estructura de un Playbook]
+  3.6 [Hosts i usuaris]
+  3.7 [Handlers]
 4. [Iventaris]<br>
   4.1 [Hosts i grups]<br>
   4.2 [Hosts i variables]<br>
@@ -20,6 +27,8 @@
 
 Va néixer de la necessitat de poder administrador diversos servidors...
 
+
+<a name="ansible"></a>  
 ## 2. ¿Qué es Ansible?
 
 Ansible es un software que permet l’automatització, aprovisionament, gestió i el desplegament de aplicacions en diferents servidors de forma simultània i paral·lela. 
@@ -62,7 +71,29 @@ La màquina que realitza la tasca de controlador reconeix als altres nodes mitja
 
 Una gran diferencia que podem trobar amb altres programes semblants com Chef o Puppet es que Ansible utilitza una arquitectura **sense agents**, l’arquitectura basada en agents, té com a finalitat instal·lar localment un procés de comunicació amb la màquina que fa de controlador, amb la nova arquitectura de Ansible sense agents, els nodes no es necessiten instal·lar ni executar ja que aquests mòduls son independents, aquesta arquitectura redueix la carrega de xarxa i prevé l’ús de control més concretes i potents per part del servidor.
 
-### 4. Inventaris
+
+<a name="playbooks"></a>  
+## 3. Ansible Playbooks
+
+<a name="origen"></a>  
+### 3.1 Mòdulos PAT, usuaris i grups
+En Ansible per poder utilitzar un dels seus mòduls que venem predefinits tenim que fer us del paràmetre `-m`.
+Alguns d'aquests mòduls podem ser **yum, apt, o service** això ens servirà per instalar els nostres programes als nostres diferents nodes.
+
+En aquest sencill exemple procedirem a instalar el paquet o mòdul NTP.
+
+`$ansible all -b -m apt -a "name=ntp state=installed"`
+
+23.png
+
+* Podem desglossar la comanda de la següent manera:
+ * "-a" En aquest paràmetre procedirem a pasar el paquet (name) juntament amb l'estat (state).
+ * "-b" L'indiquem que volem executar l'ordre com a super usuari (sudo).
+ * "-m" Es el mòdul en cuestió.
+
+D'aquesta forma ens evitem tenir que anar a cada servidor fer un SSH i instal·lar el paquet.
+
+## 4. Inventaris
 
 Dintre d'Ansible existeixen diverses formes de indicar-li al software les tasques i/o gestions a orquestar que volem fer.
 
