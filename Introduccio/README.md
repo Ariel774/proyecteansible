@@ -75,7 +75,7 @@ Una gran diferencia que podem trobar amb altres programes semblants com Chef o P
 <a name="playbooks"></a>  
 ## 3. Ansible Playbooks
 
-<a name="origen"></a>  
+<a name="moduls"></a>  
 ### 3.1 Mòdulos PAT, usuaris i grups
 En Ansible per poder utilitzar un dels seus mòduls que venem predefinits tenim que fer us del paràmetre `-m`.
 Alguns d'aquests mòduls podem ser **yum, apt, o service** això ens servirà per instalar els nostres programes als nostres diferents nodes.
