@@ -4,9 +4,9 @@
 2. [¿Qué es Ansible?](#ansible)<br>
 3. [Ansible Playbooks](#playbooks)<br>
   3.1 [Mòduls PAT, usuaris i grups](#moduls)<br>
-  3.2 [Arxius i directoris]
-  3.3 [Crones]
-  3.4 [Playbooks i YAML]
+  3.2 [Arxius i directoris](#file)<br>
+  3.3 [Crons](#crons)<br>
+  3.4 [Playbooks i YAML](#yaml)<br>
   3.5 [Estructura de un Playbook]
   3.6 [Hosts i usuaris]
   3.7 [Handlers]
@@ -205,6 +205,8 @@ Les tasques que funcionen de forma periodica dintre de un sistema s'administren 
 Comproven que existeix el cron en els nostres nodes.
 
 37.png
+
+En l'imatge es pot observa que es un cron creat per Ansible amb el nom escollit per nosaltres.
 
 Més informació sobre els diferentes pàrametres a posar en els crons d'Ansible al següent enllaç: [Crons Ansible](https://docs.ansible.com/ansible/latest/modules/cron_module.html)
 
