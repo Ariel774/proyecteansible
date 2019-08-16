@@ -7,7 +7,7 @@
   3.2 [Arxius i directoris](#file)<br>
   3.3 [Crons](#crons)<br>
   3.4 [Playbooks i YAML](#yaml)<br>
-  3.5 [Estructura de un Playbook]
+  3.5 [Estructura de un Playbook](#estructuraplaybook)<br>
   3.6 [Hosts i usuaris]
   3.7 [Handlers]
 4. [Iventaris]<br>
@@ -134,7 +134,8 @@ Com observen ha creat l'usuari en el servidor amb l'IP acabada en .101, però de
 
 Més informació sobre els usuaris i grups [aqui](https://docs.ansible.com/ansible/latest/modules/user_module.html)
 
-__Arxius i directoris__
+<a name="file"></a> 
+### 3.2 Arxius i directoris
 
 Aquest mòdul es un dels més utilitzats en l'actualitat, ja que degut a que nosaltres podem tenir diverses configuracions de Apache, PHP, MySQL... volem mantenir un mateix mòdul que estigui relacionat amb el mateix sistema de arxius i directoris d'aquesta manera eviten possibles incongruencies durant la creació dels directoris o fitxers.
 
@@ -192,7 +193,8 @@ Comproven que existeixen:
 
 Per veure més informació sobre els paràmetres a posar, [aqui](https://docs.ansible.com/ansible/latest/modules/file_module.html).
 
-__Crons en Ansible__
+<a name="crons"></a> 
+### 3.3 Crons en Ansible
 
 Les tasques que funcionen de forma periodica dintre de un sistema s'administren per crons, normalment per editar crons executen la comanda `crontab -e` però amb Ansible aquesta tasca es torna una cosa molt més sencilla graciès al mòdul "cron".
 
@@ -209,6 +211,7 @@ Comproven que existeix el cron en els nostres nodes.
 En l'imatge es pot observa que es un cron creat per Ansible amb el nom escollit per nosaltres.
 
 Més informació sobre els diferentes pàrametres a posar en els crons d'Ansible al següent enllaç: [Crons Ansible](https://docs.ansible.com/ansible/latest/modules/cron_module.html)
+
 
 ## 4. Inventaris
 
