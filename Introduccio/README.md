@@ -192,6 +192,22 @@ Comproven que existeixen:
 
 Per veure més informació sobre els paràmetres a posar, [aqui](https://docs.ansible.com/ansible/latest/modules/file_module.html).
 
+__Crons en Ansible__
+
+Les tasques que funcionen de forma periodica dintre de un sistema s'administren per crons, normalment per editar crons executen la comanda `crontab -e` però amb Ansible aquesta tasca es torna una cosa molt més sencilla graciès al mòdul "cron".
+
+* Per exemple si volem crear un cron que executi un scrip tots els dies a les 12 AM utilitzarem la següent comanda:
+
+ * `$ansible all -u root -m cron -a "name='cron-asix' hour=12 job='/script.sh'"
+ 
+36.png
+
+Comproven que existeix el cron en els nostres nodes.
+
+37.png
+
+Més informació sobre els diferentes pàrametres a posar en els crons d'Ansible al següent enllaç: [Crons Ansible](https://docs.ansible.com/ansible/latest/modules/cron_module.html)
+
 ## 4. Inventaris
 
 Dintre d'Ansible existeixen diverses formes de indicar-li al software les tasques i/o gestions a orquestar que volem fer.
