@@ -212,6 +212,24 @@ En l'imatge es pot observa que es un cron creat per Ansible amb el nom escollit 
 
 Més informació sobre els diferentes pàrametres a posar en els crons d'Ansible al següent enllaç: [Crons Ansible](https://docs.ansible.com/ansible/latest/modules/cron_module.html)
 
+### 3.4 Playbooks i YAML
+
+__Playbooks__
+
+En Ansible, els _playbooks_ ens proporciona una manera molt diferent de poder utilitzar Ansible. A diferència de les comandes que podem introduïr en consola, els _playbooks_ es podem personalitzar en un fitxer i mantenir un control d'aquests amb molt facilitat fent us dels inventaris, tags, rols, handlers, etc.
+
+Aquests _playbooks_ fam que l'eina Ansible pugui ser molt sencilla per els SysAdmin o DevOps si volem convertir els nostres Scripts en diferents "Plays" per poder composar un _playbook_.
+
+Un _playbook_ está composat de "Plays". Els "Plays" tenem com a objectiu buscar i trobar diferents servidors amb uns determinats rols els quals venem representats amb diferents tasques.
+
+__YAML__
+
+Ansible utilitza el llenguatge YAML perquè es molt més senzill d'entendre que altres formats com XML o JSON.
+
+Cal tenir que compte que en Ansible molts d'aquests fitxers YAML comencen a una **llista** que conté un item, i aquest mateix té les propietats de clau o valor.
+
+En el següent exemple veurem com declarar aquestes llistes: 
+
 
 ## 4. Inventaris
 
