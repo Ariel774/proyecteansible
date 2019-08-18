@@ -226,24 +226,76 @@ __YAML__
 
 Ansible utilitza el llenguatge YAML perquè es molt més senzill d'entendre que altres formats com XML o JSON.
 
-Cal tenir que compte que en Ansible molts d'aquests fitxers YAML comencen a una **llista** que conté un item, i aquest mateix té les propietats de clau o valor.
+En Ansible molts d'aquests fitxers YAML comencen a una **llista** que conté un item, i aquest mateix té les propietats de clau o valor.
 
-Cal tenir en compte que en YAML tots els fitxers començen per (---) i acaben amb (...).
+**A tenir en compte**, en YAML tots els fitxers començen per (---) i acaben amb (...).
+
+Totes les cadenes d'string en YAML que portin un espai tenem que anar entre cometes:
+
+```
+---
+# Descripció del gos
+firulais:
+  - descripció: "Té problemes d'atenció cap al seu amo"
+  - raça: Spitz #Aquesta no va entre cometes
+...
+```
 
 En el següent exemple veurem com declarar aquestes llistes: 
 
 ```
 ---
 # Llista de cursos en ASIX
-- Base de dades
-- Xarxes
-- Virtualització
+  - "Base de dades"
+  - Xarxes
+  - Virtualització
 ...
 ```
 
 Com podem observar en la llista anterior, tots els elements començen amb un guió, i per fer comentaris amb una almohadilla #.
 
+Els diccionaris es representen en format clau-valor, això també ho podem combinar amb llistes:
 
+```
+---
+# Alumne
+ariel:
+  - nom: "Ariel Zambrano"
+  - correu: "azambrano@sapalomera.cat"
+  - curs: "2nd ASIX"
+  - direcció:
+    - "Carrer Pep Ventura"
+    - "Numero 4"
+    - "Pis 3-1"
+  - assignatures:
+    - pendents:
+              - "Base de dades"
+              - Sistemes
+              - PHP
+    - acabades:
+              - Virtualització
+              - Xarxes
+...
+```
+
+Encara que pugui ser menys visible, aquestes llistes i diccionaris podem resumir-ho com si es tractès d' un format JSON.
+
+```
+---
+# Alumne
+ariel: {nom: "Ariel Zambrano", correu: "azambrano@sapalomera.ca"t, curs: "2nd ASIX"}
+# Llista de assignatures pendents
+assignatures: ['base de dades', 'PHP', 'Serveis']
+...
+```
+Per últim i no menys important **les variables** amb Ansible que totes tenem que anar representades d' aquesta forma ""{{ variable }}":
+
+```
+---
+home: "home/ariel"
+ruta: "/etc/{{ home }}" #Aquesta variable "home" té el mateix contigut que la propietat clau-valor d'amunt.
+...
+```
 ## 4. Inventaris
 
 Dintre d'Ansible existeixen diverses formes de indicar-li al software les tasques i/o gestions a orquestar que volem fer.
