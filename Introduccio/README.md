@@ -228,7 +228,20 @@ Ansible utilitza el llenguatge YAML perquè es molt més senzill d'entendre que 
 
 Cal tenir que compte que en Ansible molts d'aquests fitxers YAML comencen a una **llista** que conté un item, i aquest mateix té les propietats de clau o valor.
 
+Cal tenir en compte que en YAML tots els fitxers començen per (---) i acaben amb (...).
+
 En el següent exemple veurem com declarar aquestes llistes: 
+
+```
+---
+# Llista de cursos en ASIX
+- Base de dades
+- Xarxes
+- Virtualització
+...
+```
+
+Com podem observar en la llista anterior, tots els elements començen amb un guió, i per fer comentaris amb una almohadilla #.
 
 
 ## 4. Inventaris
