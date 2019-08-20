@@ -8,7 +8,7 @@
   3.3 [Crons](#crons)<br>
   3.4 [Playbooks i YAML](#yaml)<br>
   3.5 [Estructura de un Playbook](#estructuraplaybook)<br>
-  3.6 [Hosts i usuaris]
+  3.6 [Hosts i usuaris](#hostsiusuaris)<br>
   3.7 [Handlers]
 4. [Iventaris]<br>
   4.1 [Hosts i grups]<br>
@@ -212,6 +212,7 @@ En l'imatge es pot observa que es un cron creat per Ansible amb el nom escollit 
 
 Més informació sobre els diferentes pàrametres a posar en els crons d'Ansible al següent enllaç: [Crons Ansible](https://docs.ansible.com/ansible/latest/modules/cron_module.html)
 
+<a name="playbook"></a> 
 ### 3.4 Playbooks i YAML
 
 __Playbooks__
@@ -296,11 +297,119 @@ home: "home/ariel"
 ruta: "/etc/{{ home }}" #Aquesta variable "home" té el mateix contigut que la propietat clau-valor d'amunt.
 ...
 ```
+
+<a name="estructuraplaybook"></a> 
+### 3.5 Estructura d'un playbook
+
+Per començar a entendre el que es un playbook tenim que recordar que un play no és res més que una serie de rols que utilitza Ansible per trobar uns determinats servidors els cuals son representats amb tasques, aquests plays en conjunt forment el que anomen playbooks.
+
+38.png
+
+El play s'encarrega de trucar al servidor que nosaltres en indicat dintre del codi YAML, aquest tipus de plays ens permeten orquestar molts tipus de nodes encara que no tinguin res a veure y fer les modificacions necessaries si així ho volguessim.
+
+En el següent exemple nosaltres amb aquests dues comandes instal·lariem apache al nostre servidor:
+
+`sudo apt-get install apache2`
+`sudo service apache2 start`
+
+Però amb el següent playbook de Ansible ho podriem fer de forma paral·lela a tots els nostres servidors al mateix temps que iniciem el serveï:
+
+```
+---
+hosts: all
+remoute_user: root
+tasks:
+  - name: Instal·lar Apache en la seva última versió
+  apt: name= apache2 state=latest
+  - name: Inciciar el nostre Apache
+  service: name=apache2 state=started enabled=yes
+...
+```
+
+Un cop hem fet això podem executar la nostra comanda amb la comanda `ansible-playbook + fitxer.yml` d' Ansible.
+
+39.png
+
+Com podem veure en la captura l'execució es divideix en varies parts, la primera es la _Play_ que executarà a tots els hosts que li hem dit, després es trova els _Gathering Facts_ que s'encarrega de distribuir els paquets als dos allotjament, després observen la _Task_ que en aquest cas li hem posat com a nom "Instalar Apache en la seva última versió" i per últim el _Play recap_ que es la notificació final que ens dona Ansible sobre la correcta instal·lació del paquet.
+
+Com hem comentat abans un playbook pot contindre varies plays, en el següent exemple instal·laré sobre el servidor apache del servidor .101 un servidor DNS mentes que per el servidor .102 desinstalaré el apache i posaré un balancejador de carrega "Haproxy".
+
+40.png
+
+41.png
+
+__Llista de tasques en un Playbook__
+
+Les _Plays_ podem contenir una llista de tasques com pot ser l'instalació d'un paquet, l'inici/finalització d'un servei, etc. Però aquestes tasques s'executen en ordre i només es pot fer una al mateix temps, **es important saber que l'odre de les tasques es el mateix per tots els nodes** d'aquesta manera podem concloure que amb Ansible si una tasca falla aquesta es torna a executar un altre cop obtenint com a resultat que un mòdul que s'ha executat varies vegades tingui el mateix efecte com si se haguès realitzat un sol cop.
+
+Totes les tasques tenem que tenir obligatoriament un `name` que el podrem veure a l'output després d'executar la comanda de Ansible `ansible-playbook`, així podem saber que es el que estem fem.
+
+42.png
+
+Per declara una tasca utilitzen els mòduls que pot incluir Ansible, com pot ser el service, apt, order, user... en aquest exemple ens assegurem que el servei de Apache estigui sempre present i en funcionament.
+```
+---
+- hosts: all
+  remote_user: root
+  tasks:
+    - name: Crear un directori
+      shell: name=apache2 state=latest #Mòdul "apt"
+    - name: Inciciar el nostre Apache
+      service: name=apache2 state=started enabled=yes #Mòdul "service"
+...
+```
+
+Altres mòduls que s'utilitzem amb freqüència es el `command` i el `shell` aquests a diferència dels altres que hem vist no utilitzem la sintàxis **clau=valor** si no que empra el paràmetre directament de la comanda executada.
+
+```
+---
+- hosts: all
+  remote_user: root
+  tasks:
+    - name: Crear un directori
+      shell: mkdir /home/vagrant/novacarpeta
+...
+```
+
+<a name="hostsiusuaris"></a> 
+### 3.6 Hosts i usuaris
+
+Com ja hem esmentat abans una play pot contindre una serie de tasques a assignar, no obstant tenim que tenir en compte **els hosts que volem utilitzar com a objectius per les nostres _plays_.**
+
+Dit d'un altre forma, abans hem utilitzat la comanda `hosts: all` per indicar tots els nostres servidors a utilitzar, no obstant això equival a `hosts: webservers`.
+
+Per altre banda el paràmetre `remote_user` l'utilitzem per indicar l'usuari que s'encarregarà de executar la nostra play.
+
+Aquests usuaris es podem de definir de forma general o bé per executar tasques **individuals**:
+
+```
+---
+- hosts: 192.168.10.101
+  remote_user: root
+  tasks:
+    - name: Actualitzar tots els hosts a la seva última versió amb el compte Ariel
+      remote_user: ariel
+      become: yes
+      become_user: www-data
+      apt: name=aptitude state=latest
+...
+```
+
+A més també podem indicar l'ordre a seguir quan executen les tasques en els nostres servidors fen us del mòdul `order`.
+
+* Dintre del mòdul order podem trobar les següents opcions:
+ * inventory: s'empra per defecte, s'utilitza l'odre especificat del inventari.
+ * reverse_inventory: executa les comandes de forma inversa.
+ * sorted: els hosts s'executen de forma alfabetica.
+ * reverse_sorted: el mateix que el `sorted` però al contrari.
+ * shuffle: els hosts s'ordenen de forma random.
+
+
 ## 4. Inventaris
 
 Dintre d'Ansible existeixen diverses formes de indicar-li al software les tasques i/o gestions a orquestar que volem fer.
 
-La més fàcil es ficar les nostres màquines nodes al **inventari que Ansible té dintre del nostre sistema**, això es pot localitzar dintre de `/etc/ansible/hosts`.
+La més fàcil es ficar les nostres màquines nodes al **inventari que Ansible té dintre del nostre sistema**, aquest inventari es pot localitzar dintre de `/etc/ansible/hosts`.
 
 Com podem veure dintre del fitxer podem afegir de diverses formes els nostres hosts, partint desde un nom de domini, ip, ficar-los dintre d'un grup, delimitant-los amb un header per crear grups.
 
@@ -309,7 +418,6 @@ Com podem veure dintre del fitxer podem afegir de diverses formes els nostres ho
 Per posar els nostres dos nodes dintre del nostre inventari un ficarem de la següent forma:
 
 12.png
-
 
 
 ### 6. Ansible portat a la pràctica. (DESENVOLUPAMENT)
