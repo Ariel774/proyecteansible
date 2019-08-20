@@ -403,6 +403,14 @@ A més també podem indicar l'ordre a seguir quan executen les tasques en els no
  * sorted: els hosts s'executen de forma alfabetica.
  * reverse_sorted: el mateix que el `sorted` però al contrari.
  * shuffle: els hosts s'ordenen de forma random.
+ 
+### 3.6 Handlers
+
+En Ansible els Handlers ens serveixen per poder gestionar les accions de les nostres tasques i així poder modificar els resultats de les nostres accions.
+
+Aquests accions son llançades al final de cadascuna de les nostres _plays_, si Ansible detecta que tenim que reiniciar més d'una vegada només s'executaran un sol cop encara que es cridim varies vegades. 
+
+En el següent exemple nosaltres tenim un servidor sense l'Apache configurat, amb el Handler que hem creat podem llençar una notificació i reiniciar el nostre servei un sol cop.
 
 
 ## 4. Inventaris
