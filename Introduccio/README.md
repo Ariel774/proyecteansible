@@ -438,25 +438,73 @@ En el següent exemple nosaltres tenim un servidor sense l'Apache configurat, am
 
 ## 4. Inventaris
 
-__4.1 Hosts i grups__
+### 4.1 Hosts i grups
 
 Dintre d'Ansible existeixen diverses formes de indicar-li al software les tasques i/o gestions a orquestar que volem fer.
 
-La més fàcil es ficar les nostres màquines nodes al **inventari que Ansible té dintre del nostre sistema**, aquest inventari es pot localitzar dintre de `/etc/ansible/hosts`.
+La més fàcil es ficar les nostres màquines nodes al **inventari que Ansible té dintre del nostre sistema**, aquest inventari es pot localitzar per defecte dintre de `/etc/ansible/hosts`, amb el paràmetre `-i` podem modificar aquest inventari per el que nosaltres volguem.
 
-Com podem veure dintre del fitxer podem afegir de diverses formes els nostres hosts, partint desde un nom de domini, ip, ficar-los dintre d'un grup, delimitant-los amb un **header** per crear grups.
+Com podem veure dintre del fitxer podem afegir de diverses formes els nostres hosts, partint desde un nom de domini i/o ip, ficar-los dintre d'un grups, aquest es delimitent amb un **header** per crear grups.
 
 11.png
 
-Per posar els nostres dos nodes dintre del nostre inventari un ficarem de la següent forma:
+Aquest fitxer `host` té un format semblant al .ini i els comentaris es fam amb l'almohadilla "#", per posar els nostres dos nodes dintre del nostre inventari els ficarem de la següent forma:
 
 12.png
 
-Aquests headers o cabeceras son el nom dels nostres grups nodes, els cuals utilitzarem per separar, classificar i ordenar els diferents servidors dintre de Ansible per de aquesta manera poder utilitzar els més convenients segons les nostres necessitats.
+Aquests headers o capçaleres son el nom dels nostres grups de servidors, els cuals utilitzarem per separar, classificar i ordenar els diferents servidors dintre de Ansible per de aquesta manera poder utilitzar els més convenients segons les nostres necessitats.
+
+```
+[webserver]
+azambrano.com
+
+[backupserver]
+172.100.10.1
+
+[dbserver]
+db.asix2.com
+
+```
+A més, dintre d'aquest fitxer podem indicar-li la connexió i l'usuari que volem que la faci amb variables, concretament amb els paràmetres `ansible_connection` i `ansible_ss_port`, utilitzarem sempre la sintaxi **clau=valor**.
+
+```
+[webserver]
+localhost ansible_connection=local
+azambrano.com ansible_connection=ssh ansible_user=ariel 
+
+[dbserver]
+azambrano.com ansible_ss_port=22 ansible_user=ariel
+db.azambrano.com:2222 #També ho podem fer d'aquesta forma.
+
+```
+
+Encara que es pogui utilitzar les variables en aquest fitxer, Ansible recomana declarar les varibles dintre de la carpeta `hosts_vars`.
+
+A més de declarar variables, també podem fer us dels **patrons** per anar per els servidors en comptes de crear llistes.
+
+```
+[webserver]
+server[a:z]azambrano.com #Recorrem tots els servidors des de la A fins la Z 
+
+[dbserver]
+db[1:7].azambrano.com:2222 #També ho podem fer d'aquesta forma amb numeros.
+
+```
+
+### 4.2 Hosts i variables
+
+Les variables dintre d'aquests fitxer podem venir predefinides com les de ansible_connection o ansible_user però també hem podem crear de personalitzades
+
+```
+[webserver]
+asix.azambrano.com variable1=hola variable2=adeu
+```
+__Grups de variables__
+
+Com hem vist abans, les variables es podem assignar per **clau=valor** però a més aquestes es podem agrupar en les capçeleres dels grups dels notres servidors `[webserver:variables]` 
 
 
-
-
+Això fa que el manteniment i control dels nostres servidors amb Ansible sigui una eina molt efica
 ### 6. Ansible portat a la pràctica. (DESENVOLUPAMENT)
 
 L'estructura que utilitzarem per fer totes les nostres proves en Ansible serà la seguent:
