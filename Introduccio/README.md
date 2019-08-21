@@ -504,7 +504,7 @@ __Grups de variables__
 Com hem vist abans, les variables es podem assignar per **clau=valor** però a més aquestes es podem agrupar en les capçeleres dels grups dels notres servidors `[webserver:variables]` 
 
 
-Això fa que el manteniment i control dels nostres servidors amb Ansible sigui una eina molt efica
+Això fa que el manteniment i control dels nostres servidors amb Ansible sigui una tas molt més eficaç.
 ### 6. Ansible portat a la pràctica. (DESENVOLUPAMENT)
 
 L'estructura que utilitzarem per fer totes les nostres proves en Ansible serà la seguent:
