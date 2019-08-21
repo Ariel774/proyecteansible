@@ -212,7 +212,7 @@ En l'imatge es pot observa que es un cron creat per Ansible amb el nom escollit 
 
 Més informació sobre els diferentes pàrametres a posar en els crons d'Ansible al següent enllaç: [Crons Ansible](https://docs.ansible.com/ansible/latest/modules/cron_module.html)
 
-<a name="playbook"></a> 
+<a name="yaml"></a> 
 ### 3.4 Playbooks i YAML
 
 __Playbooks__
@@ -438,17 +438,23 @@ En el següent exemple nosaltres tenim un servidor sense l'Apache configurat, am
 
 ## 4. Inventaris
 
+__4.1 Hosts i grups__
+
 Dintre d'Ansible existeixen diverses formes de indicar-li al software les tasques i/o gestions a orquestar que volem fer.
 
 La més fàcil es ficar les nostres màquines nodes al **inventari que Ansible té dintre del nostre sistema**, aquest inventari es pot localitzar dintre de `/etc/ansible/hosts`.
 
-Com podem veure dintre del fitxer podem afegir de diverses formes els nostres hosts, partint desde un nom de domini, ip, ficar-los dintre d'un grup, delimitant-los amb un header per crear grups.
+Com podem veure dintre del fitxer podem afegir de diverses formes els nostres hosts, partint desde un nom de domini, ip, ficar-los dintre d'un grup, delimitant-los amb un **header** per crear grups.
 
 11.png
 
 Per posar els nostres dos nodes dintre del nostre inventari un ficarem de la següent forma:
 
 12.png
+
+Aquests headers o cabeceras son el nom dels nostres grups nodes, els cuals utilitzarem per separar, classificar i ordenar els diferents servidors dintre de Ansible per de aquesta manera poder utilitzar els més convenients segons les nostres necessitats.
+
+
 
 
 ### 6. Ansible portat a la pràctica. (DESENVOLUPAMENT)
