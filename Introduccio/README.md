@@ -9,7 +9,7 @@
   3.4 [Playbooks i YAML](#yaml)<br>
   3.5 [Estructura de un Playbook](#estructuraplaybook)<br>
   3.6 [Hosts i usuaris](#hostsiusuaris)<br>
-  3.7 [Handlers]
+  3.7 [Handlers](#handlers)<br>
 4. [Iventaris]<br>
   4.1 [Hosts i grups]<br>
   4.2 [Hosts i variables]<br>
@@ -370,6 +370,27 @@ Altres mòduls que s'utilitzem amb freqüència es el `command` i el `shell` aqu
       shell: mkdir /home/vagrant/novacarpeta
 ...
 ```
+__Opcions d'un Playbook__
+
+Ansible de forma predeterminada té moltes opcions que es troben assignades sense que nosaltres ho sapiguem com pot ser la ruta del nostre inventari o el _verbose_ que ens monstrarà per sortida totes les comandes emprades durant l'execució, tot això es pot modificar gracies a les opcions següents:
+
+* Per exemple, en Ansible la ruta del nostre inventari es `/etc/ansible/hosts` no obstant podem modificar aquesta ruta perquè apunti cap a un altre fitxer amb la comanda `--inventory=/ruta/que/volem` o `(-i PATH)`
+
+En aquesta imatge podem veure com tenim un fitxer a la ruta `/home/vagrant/projecte` i volem executar el nostre playbook per reiniciar els serveis webs, llavors executarem la següent comanda indicant el path del inventari alternatiu:
+ 
+ 45.png
+ 
+Com podem veure encara que el host .103 no existeixi Ansible continuarà executant les comandes sense cap tipus de problema.
+
+* En aquest segon exemple comprovarem com funciona la comanda `--verbose (-v)` en Ansible perquè ens monstri totes les comandes, podem afegir el paràmetre `-vvvv` per obtenir tots els detalls de l'execució.
+
+46.png
+
+* La següent opció es la de afegir variables durant l'execució del nostre Playbook amb la comanda `--extra-vars=VARS` o `-e VARS` cal recordar que si afegim variables aquestes es tenem que declarar en formar clau-valor **"clau1=valor1,clau2=valor2"**.
+
+* També tenim l'opció d'indicar el tipus de connexió amb la comanda `--connections=TYPE` o `-c TYPE` això fa referència al tipus de connexió que volem fer durant l'execució del playbook, **per defecte es SSH** encara que podem executar el nostre playbook en **local** gràcies a aquesta opció.
+
+* Després tenim l'opció `--check` que ens permet fer una simulació de les nostres comandes per comprovar que s'executen de forma correcta a els nostres servidors.
 
 <a name="hostsiusuaris"></a> 
 ### 3.6 Hosts i usuaris
@@ -403,7 +424,8 @@ A més també podem indicar l'ordre a seguir quan executen les tasques en els no
  * sorted: els hosts s'executen de forma alfabetica.
  * reverse_sorted: el mateix que el `sorted` però al contrari.
  * shuffle: els hosts s'ordenen de forma random.
- 
+
+<a name="handlers"></a> 
 ### 3.6 Handlers
 
 En Ansible els Handlers ens serveixen per poder gestionar les accions de les nostres tasques i així poder modificar els resultats de les nostres accions.
@@ -412,6 +434,7 @@ Aquests accions son llançades al final de cadascuna de les nostres _plays_, si 
 
 En el següent exemple nosaltres tenim un servidor sense l'Apache configurat, amb el Handler que hem creat podem llençar una notificació i reiniciar el nostre servei un sol cop.
 
+43.png
 
 ## 4. Inventaris
 
