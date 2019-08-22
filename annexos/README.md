@@ -24,16 +24,16 @@ Per començar, en aquest apartat podem veure el fitxer empleat per la configurac
 
 Si observen el fitxer veurem que hi ha una configuració amb el path “config.sh” això ho utilitzarem per instal·lar el Ansible de forma automàtica a la nostra màquina virtual.
 
-![alt text](img/5.png "5")
+![alt text](../img/5.png "5")
 
 I iniciem el nostre servidor controlador que serà l’encarregat de gestionar els altres nodes, carreguem la configuració del fitxer amb la comanda `vagrant up`.
 
-![alt text](img/1.png "1")
-![alt text](img/2.png "2")
+![alt text](../img/1.png "1")
+![alt text](../img/2.png "2")
 
 Ara per veure si la nostra màquina s’ha configurat correctament fem un SSH cap a l’IP del nostre servidor.
 
-![alt text](img/3.png "3")
+![alt text](../img/3.png "3")
 
 <a name="ssh-passwd"></a>
 ## Habilitació del SSH i contrasenya per la correcta gestió de Ansible
@@ -42,18 +42,18 @@ Un dels problemes que té l’administració remota es la continua petició de l
 
 Primer de tot autoritzarem l’autorització per ssh del usuari root per els nostres nodes dintre del fitxer `/etc/ssh/sshd_config`, canviarem el prohibit password per **yes**:
 
-![alt text](img/7.png "7")
+![alt text](../img/7.png "7")
 
 Un cop hem habilitat el SSH per root a els nostres nodes, tenim que modificar activar i modificar la contrasenya dels nostres hosts que penjaram del servidor principal.
 
-![alt text](img/13.png "13")
-![alt text](img/14.png "14")
+![alt text](../img/13.png "13")
+![alt text](../img/14.png "14")
 
 Per tal de poder obtenir les mateixes credencials de root en tots els nodes utilitzarem la següent comanda en el **controlador** que ens crearà una nova clau:
 
 `$$ ssh-keygen –t rsa` (Aquesta comanda el que fa es generar unes claus per el ssh-copy-id)
 
-![alt text](img/10.png "10")
+![alt text](../img/10.png "10")
 
 Ara afegirem la contrasenya rood dels nostres nodes dintre del nostre host-controlador Ansible:
 
@@ -73,19 +73,19 @@ Abans de fer qualsevol tasca relacionada amb Ansible tenim que comprovar que els
 * Comprovació del hostname de tots els nodes de forma paralela amb Ansible:
  * `$ansible all -a "hostname"` --> Aquesta comanda té com a funció dir-nos els hostname de totes les màquines que es troven controlades per Ansible, aquesta comanda equival a `$ansible 192.168.10.101,192.168.10.102 -a "hostname"`.
   
-![alt text](img/15.png "15")
+![alt text](../img/15.png "15")
 
-Per defecte, Ansible executa les comandes de forma paral·lela per acabar abans, si tenim dos servidors com es el cas no notarem la diferente però si afegim més servdiros comprovare que funciona més ràpid si paral·lelitzem.
+Per defecte, Ansible executa les comandes de forma paral·lela per acabar abans, si tenim dos servidors com es el cas, no notarem la diferente però si afegim més servidors comprovare que funciona més ràpid si paral·lelitzem.
 
 * Per comprovar la execució de comades de forma sequencial utilitzarem el paràmetre "-f 1".
  * `$ansible all -a "hostname" -f 1` (Aquest paràmetre només s'utilitza quan tinguem molts servidors i el nostre ample de banda no sigui molt bo, per això es recomana que per les xarxes més lentes utilitzin aquest paràmetre.
 
-![alt text](img/16.png "16")
+![alt text](../img/16.png "16")
 
 * També podem observar l'espai dels nostres servidors com si fos una comanda cap al nostre servidor local.
  * `$ansible all -a "df -h"`
 
-![alt text](img/17.png "17")
+![alt text](../img/17.png "17")
 
 * Comprovació de la nostra memòria cau per poder comprovar que tenim espai suficient per poder instalar un WordPress o Apache.
  * `$ansible all -a "free -m"`
@@ -96,8 +96,8 @@ Els facts son els detalls de un servidor o grup de servidors, aquesta comanda en
 
 Per exemple en les següents captures podem veure les IPs del nostre servidor, la data y hora amb segons, el mes, el SO, la Home, entre altres caràcteristiques.
 
-![alt text](img/20.png "20")
-![alt text](img/21.png "21")
+![alt text](../img/20.png "20")
+![alt text](../img/21.png "21")
 
 
   
