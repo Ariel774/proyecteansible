@@ -41,7 +41,11 @@ Es una eina de codi obert, Open Source en la que actualment es troba treballant 
 
 https://github.com/ansible/ansible
 
-A més de ser de codi obert, és gratuïta, ja que utilitza una llicència **GNU GPL v3**, això permet automatitzar la majoria dels elements d'una infraestructura.
+A més de ser de codi obert, és gratuïta, ja que utilitza una llicència **GNU GPL v3**, això permet automatitzar la majoria dels elements d'una infraestructura. 
+
+Ansible també permet treballar amb els proveïdors del núvol, com AWS, Azure o Google Cloud Platform. Gestionant components com a xarxes, grups de seguretat, adreces IP o claus públiques.
+
+queesansible.png
 
 ¿Com es connecta Ansible als diferents nodes per a poder gestionar-ho?
 
