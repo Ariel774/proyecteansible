@@ -20,39 +20,40 @@ En el meu cas per a poder gestionar de forma molt més senzilla i ràpida totes 
 
 Per començar, en aquest apartat podem veure el fitxer empleat per la configuració de la nostra maquina principal Ansible, podem observar que utilitzen una versió de Ubuntu 16.04, amb una xarxa privada amb l’IP 192.168.10.100, una carpeta compartida Shared que s’ubicarà en l’arrel de el nostre Vagrantfile, memòria ram i CPU. 
 
-4.png
+![alt text](img/4.png "4")
 
 Si observen el fitxer veurem que hi ha una configuració amb el path “config.sh” això ho utilitzarem per instal·lar el Ansible de forma automàtica a la nostra màquina virtual.
 
-5.png
+![alt text](img/5.png "5")
 
 I iniciem el nostre servidor controlador que serà l’encarregat de gestionar els altres nodes, carreguem la configuració del fitxer amb la comanda `vagrant up`.
 
-1.png
-2.png
+![alt text](img/1.png "1")
+![alt text](img/2.png "2")
 
-I ara per veure si la nostra màquina s’ha configurat correctament fem un SSH cap a l’IP del nostre servidor.
+Ara per veure si la nostra màquina s’ha configurat correctament fem un SSH cap a l’IP del nostre servidor.
 
-3.png 
+![alt text](img/3.png "3")
 
 <a name="ssh-passwd"></a>
 ## Habilitació del SSH i contrasenya per la correcta gestió de Ansible
 
-Un dels problemes que té l’administració remota es la continua petició de les credencials alhora d’introduir una comanda de Ansible aquesta tasca pot ser molt feixuga si tenim molts nodes no volem que sempre ens demani la contrasenya, així que per obviar-lo haurem d’ habilitar per el nostre node principal la no autorització i copiar de la contrasenya root dels altres servidores, d’aquesta forma farem Ansible pugui accedir de forma correcta:
+Un dels problemes que té l’administració remota es la continua petició de les credencials alhora d’introduir una comanda de Ansible, aquesta tasca pot ser molt feixuga si tenim molts nodes no volem que sempre ens demani la contrasenya, així que per obviar-lo haurem d’ habilitar per el nostre node principal la **NO** autorització i copia de la contrasenya root dels altres servidores cap al servidor principal Ansible, d’aquesta forma farem Ansible pugui accedir de forma correcta:
 
 Primer de tot autoritzarem l’autorització per ssh del usuari root per els nostres nodes dintre del fitxer `/etc/ssh/sshd_config`, canviarem el prohibit password per **yes**:
 
-7.png
+![alt text](img/7.png "7")
 
 Un cop hem habilitat el SSH per root a els nostres nodes, tenim que modificar activar i modificar la contrasenya dels nostres hosts que penjaram del servidor principal.
 
-13.png / 14.png
+![alt text](img/13.png "13")
+![alt text](img/14.png "14")
 
 Per tal de poder obtenir les mateixes credencials de root en tots els nodes utilitzarem la següent comanda en el **controlador** que ens crearà una nova clau:
 
 `$$ ssh-keygen –t rsa` (Aquesta comanda el que fa es generar unes claus per el ssh-copy-id)
 
-10.png
+![alt text](img/10.png "10")
 
 Ara afegirem la contrasenya rood dels nostres nodes dintre del nostre host-controlador Ansible:
 
@@ -61,6 +62,7 @@ Ara afegirem la contrasenya rood dels nostres nodes dintre del nostre host-contr
 També cal tenir present que no sempre realitzarem tasques com a root de forma que també copiarem la contrasenya del usuari, en aquest cas serà el de Vagrant.
 
 `$vagrant@cotroler: ssh-copy-id vagrant@192.168.10.101` << Aquesta comanda s'ha d'emprà a els dos nodes per evitar problemes de connexió  amb les comandes de Ansible.
+
 <a name="comandasbasicas"></a>
 ## Primeres comandes bàsiques de Ansible (Comandes AD-HOC)
 
@@ -71,19 +73,19 @@ Abans de fer qualsevol tasca relacionada amb Ansible tenim que comprovar que els
 * Comprovació del hostname de tots els nodes de forma paralela amb Ansible:
  * `$ansible all -a "hostname"` --> Aquesta comanda té com a funció dir-nos els hostname de totes les màquines que es troven controlades per Ansible, aquesta comanda equival a `$ansible 192.168.10.101,192.168.10.102 -a "hostname"`.
   
-15.png
+![alt text](img/15.png "15")
 
 Per defecte, Ansible executa les comandes de forma paral·lela per acabar abans, si tenim dos servidors com es el cas no notarem la diferente però si afegim més servdiros comprovare que funciona més ràpid si paral·lelitzem.
 
 * Per comprovar la execució de comades de forma sequencial utilitzarem el paràmetre "-f 1".
  * `$ansible all -a "hostname" -f 1` (Aquest paràmetre només s'utilitza quan tinguem molts servidors i el nostre ample de banda no sigui molt bo, per això es recomana que per les xarxes més lentes utilitzin aquest paràmetre.
 
-16.png
+![alt text](img/16.png "16")
 
 * També podem observar l'espai dels nostres servidors com si fos una comanda cap al nostre servidor local.
  * `$ansible all -a "df -h"`
 
-17.png
+![alt text](img/17.png "17")
 
 * Comprovació de la nostra memòria cau per poder comprovar que tenim espai suficient per poder instalar un WordPress o Apache.
  * `$ansible all -a "free -m"`
@@ -94,7 +96,8 @@ Els facts son els detalls de un servidor o grup de servidors, aquesta comanda en
 
 Per exemple en les següents captures podem veure les IPs del nostre servidor, la data y hora amb segons, el mes, el SO, la Home, entre altres caràcteristiques.
 
-20.png 21.png
+![alt text](img/20.png "20")
+![alt text](img/21.png "21")
 
 
   
