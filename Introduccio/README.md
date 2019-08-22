@@ -535,12 +535,64 @@ Les variables dintre d'aquests fitxer podem venir predefinides com les de ansibl
 [webserver]
 asix.azambrano.com variable1=hola variable2=adeu
 ```
+
 __Grups de variables__
 
-Com hem vist abans, les variables es podem assignar per **clau=valor** però a més aquestes es podem agrupar en les capçeleres dels grups dels notres servidors `[webserver:variables]` 
+Com hem vist abans, les variables es podem assignar en format **clau=valor** però a més, aquestes es podem agrupar en les capçeleres dels grups dels notres servidors `[webserver:vars]`, es posible crear grups de grups utilitzant el sufix `:children` encara que també podem mantenir les variables personalitzades per crear aquests grup de variables. 
 
+Per posar un cas pràctic en el següent diagrama tenim una estructura d'un cas real amb Ansible, on tenim un servidor de logs, de BBDD, web y servidors corrents que formen part en una empresa pero que es situen en diferents llocs del món tots aquests es configuren de la mateixa manera.
 
-Això fa que el manteniment i control dels nostres servidors amb Ansible sigui una tas molt més eficaç.
+grupservidors.png
+
+En el nostre inventari deurien de tenir diferents entrades per controlar el mapa de xarxa anterior.
+```
+#Aquests correspondriem als servidors web
+[azambrano-web]
+www1.azambrano.com
+www2.azambrano.com
+
+#En aquest grup indicariem que la connexión cap als nostres servidors web d'amunt ho farem amb SSH
+[azambrano-web:vars]
+ansible_connection=ssh
+
+#Servidors de base de dades empleant un patro per agafar tots dos.
+[azambrano-db]
+db[1:2].azambrano.com
+
+[azambrano-log]
+logs.azambrano.com
+
+[azambrano-nodes]
+bcn.asix.com
+madrid.asix.com
+
+[azambrano-nodes:vars]
+ansible_user=vagrant # Farem la connexió als nostrers servidors nodes amb l'usuari Vagrant
+```
+
+Un cas real en el que podem utilitza la variable `grup:children` es per agrupar tots els nostres servidors segons el sistema operatiu emprat.
+
+```
+[ubuntu:children]
+azambrano-web #Aqui posarem el nom del grups
+azambrano-nodes #Agrupa els servidors bcn.asix.com i madrid.asix.com
+
+[debian:children]
+azambrano-logs
+azambrano-db
+```
+Aquests grus "Children" té dues propietats principals:
+  * El hosts membre d'un grup fill, formarà art del grup pare automàticament.
+  * Les variables del grup fill sobreescriuen les del grup pare.
+  
+Amb tot el que hem vist podem deduïr que aquesta manera de treballar amb els fitxers _Hosts_ fa que el manteniment i control dels nostres servidors amb Ansible sigui una tasca molt més eficaç i especifica.
+
+__Grups per defecte__
+
+En l'inventari per defecte existeixen dos grups: `all` que conté tots els hosts i `ungrouped` el qual agrupa tots els hosts que no tenen associat cap grup.
+
+grupsperdefecte.png
+
 ### 6. Ansible portat a la pràctica. (DESENVOLUPAMENT)
 
 L'estructura que utilitzarem per fer totes les nostres proves en Ansible serà la seguent:
