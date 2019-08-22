@@ -38,9 +38,9 @@ Ara per veure si la nostra màquina s’ha configurat correctament fem un SSH ca
 <a name="ssh-passwd"></a>
 ## Habilitació del SSH i contrasenya per la correcta gestió de Ansible
 
-Un dels problemes que té l’administració remota es la continua petició de les credencials alhora d’introduir una comanda de Ansible, aquesta tasca pot ser molt feixuga si tenim molts nodes no volem que sempre ens demani la contrasenya, així que per obviar-lo haurem d’ habilitar per el nostre node principal la **NO** autorització i copia de la contrasenya root dels altres servidores cap al servidor principal Ansible, d’aquesta forma farem Ansible pugui accedir de forma correcta:
+Un dels problemes que té l’administració remota es la continua petició de les credencials alhora d’introduir una comanda de Ansible, aquesta tasca pot ser molt feixuga si tenim molts nodes no volem que sempre ens demani la contrasenya, així que per obviar-lo haurem d’ **habilitar** per el nostre node principal **l' autorització i copia de la contrasenya root** dels altres servidores cap al servidor principal Ansible, d’aquesta forma farem Ansible pugui accedir de forma correcta:
 
-Primer de tot autoritzarem l’autorització per ssh del usuari root per els nostres nodes dintre del fitxer `/etc/ssh/sshd_config`, canviarem el prohibit password per **yes**:
+Primer de tot autoritzarem l’autorització per ssh del usuari root per els nostres nodes dintre del fitxer `/etc/ssh/sshd_config`, canviarem el prohibit password per **yes** `permitrootlogin YES`:
 
 ![alt text](../img/7.png "7")
 
