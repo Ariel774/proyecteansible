@@ -27,6 +27,8 @@
 
 Va néixer de la necessitat de poder administrador diversos servidors...
 
+Com a dada curiosa la paraula "Ansible" va aparèixer per primera vegada en la literatura de ciència-ficció de Ursula Le Guin l'any 1966 en _El món de Rocannon_ fent referència a un dispositiu de comunicació la qual era més ràpida que la llum i exercia les seves funcions de forma instantània¡.
+
 
 <a name="ansible"></a>  
 ## 2. ¿Qué es Ansible?
@@ -47,7 +49,29 @@ Ansible gestiona els diferents nodes associats a ell mitjançant SSH, l’únic 
 
 Utilitza YAML per a descriure les accions a realitzar y configurar les diferents tasques a fer per que aquestes es puguin propagar als diferents nodes.
 
-### Disponibilitat
+__Principals caràcteristiques__
+
+* Aprovisionament
+
+ * Amb Ansible podem aprovisionar-nos de les últimes plataformes disponibles al núvol com hosts virtuals, dispositius de xarxa, físics...
+
+* Gestió de la configuració
+
+ * Podem gestionar totes les nostres configuracions de forma molt ràpida i eficaç, ja que els seus fitxers són molt configurables.
+
+* Orquestació
+
+ * Ansible, fa ús de la seva potencia per poder desplegar i gestionar molts servidors de forma paral·lela simple i segura.
+
+* Desplegament d'aplicacions
+
+ * Amb aquesta característica podem seguir un control del cicle de vida d'una aplicació, aquesta es controla amb un deployment anomenat Ansible Tower.
+
+* Seguretat i compliment
+
+ * Ansible ens dóna la possibilitat de definir la seguretat dels nostres sistemes de forma molt sencilla utilitzant els _Playbooks_ podem definir regles en l'àmbit de Firewall, permisos d'usuaris, carpetes, grups...
+ 
+__Disponibilitat__
 
 En l’actualitat Ansible es distribueix en Fedora, Red Hat, Linux, CentOs, i Scientific Linux mitjançant els paquets EPEL (Extra Packages for Enterprise Linux).
 A més dels SO anteriorment mencionats, aquesta eina també es troba distribuïda i es podem trobar des de un buscador de paquets: https://goo.gl/y6ad6g
@@ -57,7 +81,9 @@ A més dels SO anteriorment mencionats, aquesta eina també es troba distribuïd
 En el nostre cas utilitzaren una maquina virtual i descarregarem l’eina més actual per comandes.
 La podem trobar per dispositius Mac no obstant això **no està disponible per Windows**.
 
-### Arquitectura de Ansible.
+__Principals caràcteristiques__
+
+__Arquitectura de Ansible__
 
 Com abans hem comentat Ansible es una eina que serveis per instal·lar, configurar i manejar diferents servidor de forma paral·lela, tenim que diferenciar que n’hi han dos tipus.
 
