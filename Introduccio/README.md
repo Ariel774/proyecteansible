@@ -25,7 +25,7 @@
 <a name="origen"></a>  
 ## 1. Origen d’ Ansible
 
-Va néixer de la necessitat de poder administrador diversos servidors...
+Va néixer de la necessitat de poder administrador diversos servidors de forma molt més sencilla i fàcil amb el permís de Puppet per automatitzar les tasques d'un "DevOps", això va ser possible gràcies a Michael DeHann, extreballador de Puppet que buscaba una eina que es poguès automatitzar, amb potencia i escalabilitat, oficialment Ansible es va llençar el 20 de febrer de l'any 2012. 
 
 Com a dada curiosa la paraula "Ansible" va aparèixer per primera vegada en la literatura de ciència-ficció de Ursula Le Guin l'any 1966 en _El món de Rocannon_ fent referència a un dispositiu de comunicació la qual era més ràpida que la llum i exercia les seves funcions de forma instantània¡.
 
@@ -40,6 +40,8 @@ Ansible es un software que permet l’automatització, aprovisionament, gestió 
 Es una eina de codi obert, Open Source en la que actualment es troba treballant molta gent fet que el fa una eina actualitzada i segura, l’autor de Ansible es Michael DeHaan i té un repositori amb el codi de l’eina allotjada en un Github:
 
 https://github.com/ansible/ansible
+
+A més de ser de codi obert, és gratuïta, ja que utilitza una llicència **GNU GPL v3**, això permet automatitzar la majoria dels elements d'una infraestructura.
 
 ¿Com es connecta Ansible als diferents nodes per a poder gestionar-ho?
 
