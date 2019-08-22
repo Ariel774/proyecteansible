@@ -1,6 +1,8 @@
 # Ansible
 
-## Projecte del CGGS d'ASIX
+introduccion.png
+
+## Projecte del CGS d'ASIX
 El projecte ha sigut fet y realitzat per mi Ariel Orley Zambrano amb l'autorització dels professors del IES Sa Palomera l'any 2019.
 
 ## Estructura del projecte
