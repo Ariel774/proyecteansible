@@ -2,9 +2,9 @@
 
 1. [Origen d' Ansible](#origen)<br>
 2. [¿Qué es Ansible?](#ansible)<br>
-  2.1[Principals característiques](#caracteristiques)<br>
-  2.2[Disponibilitat](#disponibilitat)<br>
-  2.3[Arquitectura](#arquitectura)<br>
+  2.1 [Principals característiques](#caracteristiques)<br>
+  2.2 [Disponibilitat](#disponibilitat)<br>
+  2.3 [Arquitectura](#arquitectura)<br>
 3. [Ansible Playbooks](#playbooks)<br>
   3.1 [Mòduls PAT, usuaris i grups](#moduls)<br>
   3.2 [Arxius i directoris](#file)<br>
