@@ -2,6 +2,9 @@
 
 1. [Origen d' Ansible](#origen)<br>
 2. [¿Qué es Ansible?](#ansible)<br>
+  2.1[Principals característiques](#caracteristiques)<br>
+  2.2[Disponibilitat](#disponibilitat)<br>
+  2.3[Arquitectura](#arquitectura)<br>
 3. [Ansible Playbooks](#playbooks)<br>
   3.1 [Mòduls PAT, usuaris i grups](#moduls)<br>
   3.2 [Arxius i directoris](#file)<br>
@@ -55,7 +58,8 @@ Ansible gestiona els diferents nodes associats a ell mitjançant SSH, l’únic 
 
 Utilitza YAML per a descriure les accions a realitzar y configurar les diferents tasques a fer per que aquestes es puguin propagar als diferents nodes.
 
-__Principals caràcteristiques__
+<a name="caracteristiques"></a>
+### 2.1 Principals característiques d'Ansible
 
 * Aprovisionament
 
@@ -76,8 +80,9 @@ __Principals caràcteristiques__
 * Seguretat i compliment
 
  * Ansible ens dóna la possibilitat de definir la seguretat dels nostres sistemes de forma molt sencilla utilitzant els _Playbooks_ podem definir regles en l'àmbit de Firewall, permisos d'usuaris, carpetes, grups...
- 
-__Disponibilitat__
+
+<a name="disponibilitat"></a>
+### 2.2 Disponibilitat
 
 En l’actualitat Ansible es distribueix en Fedora, Red Hat, Linux, CentOs, i Scientific Linux mitjançant els paquets EPEL (Extra Packages for Enterprise Linux).
 A més dels SO anteriorment mencionats, aquesta eina també es troba distribuïda i es podem trobar des de un buscador de paquets: https://goo.gl/y6ad6g
@@ -87,15 +92,14 @@ A més dels SO anteriorment mencionats, aquesta eina també es troba distribuïd
 En el nostre cas utilitzaren una maquina virtual i descarregarem l’eina més actual per comandes.
 La podem trobar per dispositius Mac no obstant això **no està disponible per Windows**.
 
-__Principals caràcteristiques__
-
-__Arquitectura de Ansible__
+<a name="arquitectura"></a>
+### 2.3 Arquitectura de Ansible
 
 Com abans hem comentat Ansible es una eina que serveis per instal·lar, configurar i manejar diferents servidor de forma paral·lela, tenim que diferenciar que n’hi han dos tipus.
 
 - El controlador: Aquesta es la màquina des de la que comença tot el maneig dels diferents servidor els quals d’alguna forma ‘’penjent d’aquest’’, en aquest punt comença l’orquestació.
 
-- Node: Es maneja per el controlador mitjançant una connexió SSH.
+- Nodo: Es maneja per el controlador mitjançant una connexió SSH.
 
 arquitectura.png
 
@@ -177,7 +181,7 @@ Aquest mòdul es un dels més utilitzats en l'actualitat, ja que degut a que nos
 
 29.png
 
-Mitjançant aquesta comanda podem observa el path del fitxer, si es executable, la seva mida, i moltes altres caràcteristiques d'aquest.
+Mitjançant aquesta comanda podem observa el path del fitxer, si es executable, la seva mida, i moltes altres característiques d'aquest.
 
 * Per **COPIAR** un fitxer partint d'un origen cap a un destí tenim que emplear aquesta linia de codi:
 
