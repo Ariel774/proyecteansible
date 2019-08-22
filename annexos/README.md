@@ -44,7 +44,7 @@ Primer de tot autoritzarem l’autorització per ssh del usuari root per els nos
 
 ![alt text](../img/7.png "7")
 
-Un cop hem habilitat el SSH per root a els nostres nodes, tenim que modificar activar i modificar la contrasenya dels nostres hosts que penjaram del servidor principal.
+Un cop habilitat el SSH per root a els nostres nodes, tenim que modificar activar i modificar la contrasenya dels nostres hosts que penjaram del servidor principal.
 
 ![alt text](../img/13.png "13")
 ![alt text](../img/14.png "14")
