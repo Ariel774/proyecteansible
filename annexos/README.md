@@ -1,6 +1,6 @@
-# Instalació de Ansible per Ubuntu:
+# Instal·lació de Ansible per Ubuntu:
 
-## Instalació en Linux.
+## Instal·lació en Linux.
 Per començar tenim que instal·lar el software de Ansible, per portar-ho a terme llançaren les següents comandes:
 
 `$ sudo apt-add-repository ppa:ansible/ansible`
