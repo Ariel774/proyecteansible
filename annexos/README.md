@@ -1,5 +1,11 @@
 # Instal·lació de Ansible per Ubuntu:
 
+L'estructura que utilitzarem per fer les nostres amb Ansible serà la següent:
+
+![alt text](../img/8.png "8")
+
+Aquesta estructura la farem possible gràcies a l'eina de Vagrant i Ansible.
+
 ## Instal·lació en Linux.
 Per començar tenim que instal·lar el software de Ansible, per portar-ho a terme llançaren les següents comandes:
 
