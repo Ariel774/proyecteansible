@@ -1,5 +1,3 @@
-# Ansible
-
 ![alt text](img/introduccion.png "IntroducciónAnsible")
 
 ## Projecte del CGS d'ASIX
