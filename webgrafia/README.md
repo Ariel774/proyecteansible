@@ -3,5 +3,5 @@
 - [Documentació oficial de Ansible](https://docs.ansible.com/)
 - [Repositoris de Vagrant](https://app.vagrantup.com/boxes/search)
 - [Origen de Ansible](https://www.ansible.com/blog/2013/12/08/the-origins-of-ansible)
-- []
+- [Wikipedia - Ansible (Software)](https://en.wikipedia.org/wiki/Ansible_(software))
 - []
