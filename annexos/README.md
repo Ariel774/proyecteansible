@@ -44,9 +44,10 @@ Primer de tot autoritzarem l’autorització per ssh del usuari root per els nos
 
 ![alt text](../img/7.png "7")
 
-Un cop habilitat el SSH per root a els nostres nodes, tenim que modificar activar i modificar la contrasenya dels nostres hosts que penjaram del servidor principal.
+Un cop habilitat el SSH per root a els nostres nodes, tenim que activar i modificar la contrasenya dels nostres hosts que penjaram del servidor principal.
 
 ![alt text](../img/13.png "13")
+
 ![alt text](../img/14.png "14")
 
 Per tal de poder obtenir les mateixes credencials de root en tots els nodes utilitzarem la següent comanda en el **controlador** que ens crearà una nova clau:
@@ -97,6 +98,7 @@ Els facts son els detalls de un servidor o grup de servidors, aquesta comanda en
 Per exemple en les següents captures podem veure les IPs del nostre servidor, la data y hora amb segons, el mes, el SO, la Home, entre altres caràcteristiques.
 
 ![alt text](../img/20.png "20")
+
 ![alt text](../img/21.png "21")
 
 
