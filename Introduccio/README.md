@@ -61,8 +61,7 @@ Utilitza YAML per a descriure les accions a realitzar i configurar les diferents
 ### 2.1 Principals característiques d'Ansible
 
 * Aprovisionament
-
- * Amb Ansible podem aprovisionar-nos de les últimes plataformes disponibles al núvol com hosts virtuals, dispositius de xarxa, físics...
+  * Amb Ansible podem aprovisionar-nos de les últimes plataformes disponibles al núvol com hosts virtuals, dispositius de xarxa, físics...
 
 * Gestió de la configuració
   * Podem gestionar totes les nostres configuracions de forma molt ràpida i eficaç, ja que els seus fitxers són molt configurables.
@@ -457,13 +456,13 @@ Com podem veure encara que el host .103 no existeixi Ansible continuarà executa
 <a name="hostsiusuaris"></a> 
 ### 3.6 Hosts i usuaris
 
-Com ja hem esmentat abans una play pot contindre una serie de tasques a assignar, no obstant tenim que tenir en compte **els hosts que volem utilitzar com a objectius per les nostres _plays_.**
+Com ja hem esmentat abans una play pot contenir una sèrie de tasques a assignar, no obstant hem de tenir en compte **els hosts que volem utilitzar com a objectius per les nostres _plays_.**
 
 Dit d'un altre forma, abans hem utilitzat la comanda `hosts: all` per indicar tots els nostres servidors a utilitzar, no obstant això equival a `hosts: webservers`.
 
-Per altre banda el paràmetre `remote_user` l'utilitzem per indicar l'usuari que s'encarregarà de executar la nostra play.
+Per altra banda el paràmetre `remote_user` l'utilitzem per indicar l'usuari que s'encarregarà d'executar la nostra play.
 
-Aquests usuaris es podem de definir de forma general o bé per executar tasques **individuals**:
+Aquests usuaris és podem de definir de forma general o bé per executar tasques **individuals**:
 
 ```
 ---
@@ -492,7 +491,7 @@ A més també podem indicar l'ordre a seguir quan executen les tasques en els no
 
 En Ansible els Handlers ens serveixen per poder gestionar les accions de les nostres tasques i així poder modificar els resultats de les nostres accions.
 
-Aquests accions son llançades al final de cadascuna de les nostres _plays_, si Ansible detecta que tenim que reiniciar més d'una vegada només s'executaran un sol cop encara que es cridim varies vegades. 
+Aquesta acció són llançades al final de cadascuna de les nostres _plays_, si Ansible detecta que hem de reiniciar més d'una vegada només s'executaran un sol cop encara que és cridem vàries vegades.
 
 En el següent exemple nosaltres tenim un servidor sense l'Apache configurat, amb el Handler que hem creat podem llençar una notificació i reiniciar el nostre servei un sol cop.
 
@@ -502,19 +501,19 @@ En el següent exemple nosaltres tenim un servidor sense l'Apache configurat, am
 
 ### 4.1 Hosts i grups
 
-Dintre d'Ansible existeixen diverses formes de indicar-li al software les tasques i/o gestions a orquestar que volem fer.
+Dintre d'Ansible existeixen diverses formes d'indicar-li al software les tasques i/o gestions a orquestrar que volem fer.
 
-La més fàcil es ficar les nostres màquines nodes al **inventari que Ansible té dintre del nostre sistema**, aquest inventari es pot localitzar per defecte dintre de `/etc/ansible/hosts`, amb el paràmetre `-i` podem modificar aquest inventari per el que nosaltres volguem.
+La més fàcil és ficar les nostres màquines nodes al **inventari que Ansible té dintre del nostre sistema**, aquest inventari es pot localitzar per defecte dintre de `/etc/ansible/hosts`, amb el paràmetre `-i` podem modificar aquest inventari per el que nosaltres vulguem.
 
-Com podem veure dintre del fitxer podem afegir de diverses formes els nostres hosts, partint desde un nom de domini i/o ip, ficar-los dintre d'un grups, aquest es delimitent amb un **header** per crear grups.
+Com podem veure dintre del fitxer podem afegir de diverses formes els nostres hosts, partint des de un nom de domini i/o ip, ficar-los dintre d'un grup, aquest és delimiten amb un **header** per crear grups.
 
 11.png
 
-Aquest fitxer `host` té un format semblant al .ini i els comentaris es fam amb l'almohadilla "#", per posar els nostres dos nodes dintre del nostre inventari els ficarem de la següent forma:
+Aquest fitxer `hosts` té un format semblant al .ini i els comentaris és fam amb l'almohadilla "#", per posar els nostres dos nodes dintre del nostre inventari els ficarem de la següent forma:
 
 12.png
 
-Aquests headers o capçaleres son el nom dels nostres grups de servidors, els cuals utilitzarem per separar, classificar i ordenar els diferents servidors dintre de Ansible per de aquesta manera poder utilitzar els més convenients segons les nostres necessitats.
+Aquests headers o capçaleres són el nom dels nostres grups de servidors, els quals utilitzarem per separar, classificar i ordenar els diferents servidors dintre d'Ansible per d'aquesta manera poder utilitzar els més convenients segons les nostres necessitats.
 
 ```
 [webserver]
@@ -527,6 +526,7 @@ azambrano.com
 db.asix2.com
 
 ```
+
 A més, dintre d'aquest fitxer podem indicar-li la connexió i l'usuari que volem que la faci amb variables, concretament amb els paràmetres `ansible_connection` i `ansible_ss_port`, utilitzarem sempre la sintaxi **clau=valor**.
 
 ```
@@ -564,13 +564,14 @@ asix.azambrano.com variable1=hola variable2=adeu
 
 __Grups de variables__
 
-Com hem vist abans, les variables es podem assignar en format **clau=valor** però a més, aquestes es podem agrupar en les capçeleres dels grups dels notres servidors `[webserver:vars]`, es posible crear grups de grups utilitzant el sufix `:children` encara que també podem mantenir les variables personalitzades per crear aquests grup de variables. 
+Com hem vist abans, les variables és podem assignar en format **clau=valor** però a més, aquestes és podem agrupar en les capçaleres dels grups dels nostres servidors `[webserver:vars]`, és possible crear grups de grups utilitzant el sufix `:children` encara que també podem mantenir les variables personalitzades per crear aquest grup de variables.
 
-Per posar un cas pràctic en el següent diagrama tenim una estructura d'un cas real amb Ansible, on tenim un servidor de logs, de BBDD, web y servidors corrents que formen part en una empresa pero que es situen en diferents llocs del món tots aquests es configuren de la mateixa manera.
+Per posar un cas pràctic en el següent diagrama tenim una estructura d'un cas real amb Ansible, on tenim un servidor de logs, de BBDD, web y servidors corrents que formen part en una empresa però que se situen en diferents llocs del món tots aquests es configuren de la mateixa manera.
 
 grupservidors.png
 
 En el nostre inventari deurien de tenir diferents entrades per controlar el mapa de xarxa anterior.
+
 ```
 #Aquests correspondriem als servidors web
 [azambrano-web]
@@ -607,11 +608,11 @@ azambrano-nodes #Agrupa els servidors bcn.asix.com i madrid.asix.com
 azambrano-logs
 azambrano-db
 ```
-Aquests grus "Children" té dues propietats principals:
-  * El hosts membre d'un grup fill, formarà art del grup pare automàticament.
-  * Les variables del grup fill sobreescriuen les del grup pare.
-  
-Amb tot el que hem vist podem deduïr que aquesta manera de treballar amb els fitxers _Hosts_ fa que el manteniment i control dels nostres servidors amb Ansible sigui una tasca molt més eficaç i especifica.
+Aquests grups "Children" té dues propietats principals:
+* El hosts membre d'un grup fill, formarà art del grup pare automàticament.
+* Les variables del grup fill sobreescriuen les del grup pare.
+
+Amb tot el que hem vist podem deduir que aquesta manera de treballar amb els fitxers _Hosts_ fa que el manteniment i control dels nostres servidors amb Ansible sigui una tasca molt més eficaç i especifica.
 
 __Grups per defecte__
 
@@ -628,7 +629,6 @@ Per exemple, el meu sistema sistema de fitxers es el següent:
 tree.png
 
 * La carpeta `group_vars` ens serveix per posar una sèrie de servidors amb variables en comú d'aquesta manera tindran el mateix lloc d'entorn i configuració.
-  
   * Podem observar el fitxer `all` on podem crear variables per tots els servidors.
   
   ```
@@ -641,11 +641,11 @@ tree.png
   
   ```
   
-  **Important, les mateixes variables que siguin predifinides en arxius que estiguin dintre de /group_vars com pot ser `developmentserves` sobreescriuran les del fitxer `all`.
+  **Important, les mateixes variables que siguin predifinides en arxius que estiguin dintre de /group_vars com pot ser `developmentserves` sobreescriuran les del fitxer `all`.**
 
-* En la carpeta `hosts_vars` aniram totes les variables de cadascun dels notres servidors de forma individual.
+* En la carpeta `hosts_vars` anirà totes les variables de cadascun dels nostres servidors de forma individual.
 
-En la següent imatge veurem que Ansible busca en les carpetes `/hosts_vars` i `/group_vars` per unir aquestes variables. Dintre del fitxer development que es troba **dintre** de `roles` només tenim que indicar-li el nom del fitxer en questió:
+En la següent imatge veurem que Ansible busca en les carpetes `/hosts_vars` i `/group_vars` per unir aquestes variables. Dintre del fitxer development que es troba **dintre** de `roles` només hem d'indicar-li el nom del fitxer en qüestió:
 
 ``` development
 [currentservers] #Nom del fitxer que es troba dintre de /etc/ansible/group_vars/currentservers
