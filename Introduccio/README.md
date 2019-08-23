@@ -247,26 +247,55 @@ En la imatge observem que és un cron creat per Ansible amb el nom escollit per 
 
 Més informació sobre els diferents paràmetres a posar en els crons d'Ansible al següent enllaç: [Crons Ansible](https://docs.ansible.com/ansible/latest/modules/cron_module.html)
 
-<a name="yaml"></a> ###########################################################################
+<a name="yaml"></a>
 ### 3.4 Playbooks i YAML
 
 __Playbooks__
 
-En Ansible, els _playbooks_ ens proporciona una manera molt diferent de poder utilitzar Ansible. A diferència de les comandes que podem introduïr en consola, els _playbooks_ es podem personalitzar en un fitxer i mantenir un control d'aquests amb molt facilitat fent us dels inventaris, tags, rols, handlers, etc.
+En Ansible, els _playbooks_ ens proporciona una manera molt diferent de poder utilitzar Ansible. A diferència de les comandes que podem introduir en consola, els _playbooks_ es podem personalitzar en un fitxer i mantenir un control d'aquests amb molt facilitat fent ús dels inventaris, tags, rols, handlers, etc.
 
-Aquests _playbooks_ fam que l'eina Ansible pugui ser molt sencilla per els SysAdmin o DevOps si volem convertir els nostres Scripts en diferents "Plays" per poder composar un _playbook_.
+Aquests _playbooks_ fam que l'eina Ansible pugui ser molt senzilla per als SysAdmin o DevOps si volem convertir els nostres Scripts en diferents "Plays" per poder composar un _playbook_.
 
-Un _playbook_ está composat de "Plays". Els "Plays" tenem com a objectiu buscar i trobar diferents servidors amb uns determinats rols els quals venem representats amb diferents tasques.
+```
+---
+- hosts: webservers
+  vars:
+    http_port: 80
+    max_clients: 200
+  remote_user: root
+  tasks:
+  - name: ensure apache is at the latest version
+    yum:
+      name: httpd
+      state: latest
+  - name: write the apache config file
+    template:
+      src: /srv/httpd.j2
+      dest: /etc/httpd.conf
+    notify:
+    - restart apache
+  - name: ensure apache is running
+    service:
+      name: httpd
+      state: started
+  handlers:
+    - name: restart apache
+      service:
+        name: httpd
+        state: restarted
+```
+
+Un _playbook_ està compost de "Plays". Els "Plays" tenem com a objectiu buscar i trobar diferents servidors amb uns determinats rols els quals venem representats amb diferents tasques.
 
 __YAML__
 
-Ansible utilitza el llenguatge YAML perquè es molt més senzill d'entendre que altres formats com XML o JSON.
+Ansible utilitza el llenguatge YAML perquè és molt més senzill d'entendre que altres formats com XML o JSON.
 
-En Ansible molts d'aquests fitxers YAML comencen a una **llista** que conté un item, i aquest mateix té les propietats de clau o valor.
+En Ansible molts d'aquests fitxers YAML comencen a una **llista** que conté un ítem, i aquest mateix té les propietats de clau o valor.
 
-**A tenir en compte**, en YAML tots els fitxers començen per (---) i acaben amb (...).
+**A tenir en compte**, en YAML tots els fitxers comencen per (---) i acaben amb (...).
 
-Totes les cadenes d'string en YAML que portin un espai tenem que anar entre cometes:
+Totes les cadenes d'string en YAML que portin un espai tenen que anar entre cometes:
 
 ```
 ---
@@ -314,7 +343,7 @@ ariel:
 ...
 ```
 
-Encara que pugui ser menys visible, aquestes llistes i diccionaris podem resumir-ho com si es tractès d' un format JSON.
+Encara que pugui ser menys visible, aquestes llistes i diccionaris podem resumir-ho com si és tractés d'un format JSON.
 
 ```
 ---
@@ -324,6 +353,7 @@ ariel: {nom: "Ariel Zambrano", correu: "azambrano@sapalomera.ca"t, curs: "2nd AS
 assignatures: ['base de dades', 'PHP', 'Serveis']
 ...
 ```
+
 Per últim i no menys important **les variables** amb Ansible que totes tenem que anar representades d' aquesta forma ""{{ variable }}":
 
 ```
@@ -336,11 +366,11 @@ ruta: "/etc/{{ home }}" #Aquesta variable "home" té el mateix contigut que la p
 <a name="estructuraplaybook"></a> 
 ### 3.5 Estructura d'un playbook
 
-Per començar a entendre el que es un playbook tenim que recordar que un play no és res més que una serie de rols que utilitza Ansible per trobar uns determinats servidors els cuals son representats amb tasques, aquests plays en conjunt forment el que anomen playbooks.
+Per començar a entendre el que és un playbook hem de recordar que un play no és res més que una sèrie de rols que utilitza Ansible per trobar uns determinats servidors els quals són representats amb tasques, aquests plays en conjunt formen el que anomenem playbooks.
 
 38.png
 
-El play s'encarrega de trucar al servidor que nosaltres en indicat dintre del codi YAML, aquest tipus de plays ens permeten orquestar molts tipus de nodes encara que no tinguin res a veure y fer les modificacions necessaries si així ho volguessim.
+El play s'encarrega de trucar al servidor que nosaltres en indicat dintre del codi YAML, aquest tipus de plays ens permeten orquestrar molts tipus de nodes encara que no tinguin res a veure y fer les modificacions necessàries si així ho volguéssim.
 
 En el següent exemple nosaltres amb aquests dues comandes instal·lariem apache al nostre servidor:
 
@@ -361,18 +391,19 @@ tasks:
 ...
 ```
 
-Un cop hem fet això podem executar la nostra comanda amb la comanda `ansible-playbook + fitxer.yml` d' Ansible.
+Un cop hem fet això podem executar la nostra comanda amb la comanda `ansible-playbook + fitxer.yml` d'Ansible.
 
 39.png
 
-Com podem veure en la captura l'execució es divideix en varies parts, la primera es la _Play_ que executarà a tots els hosts que li hem dit, després es troba els _Gathering Facts_ que s'encarrega de distribuir els paquets als dos allotjament, després observen la _Task_ que en aquest cas li hem posat com a nom "Instalar Apache en la seva última versió" i per últim el _Play recap_ que es la notificació final que ens dona Ansible sobre la correcta instal·lació del paquet.
+Com podem veure en la captura l'execució es divideix en vàries parts, la primera és la _Play_ que executarà a tots els hosts que li hem dit, després es troba els _Gathering Facts_ que s'encarrega de distribuir els paquets als dos allotjaments, després observen la _Task_ que en aquest cas li hem posat com a nom "Instal·lar Apache en la seva última versió" i per últim el _Play recap_ que es la notificació final que ens dóna Ansible sobre la correcta instal·lació del paquet.
 
-Com hem comentat abans un playbook pot contindre varies plays, en el següent exemple instal·laré sobre el servidor apache del servidor .101 un servidor DNS mentes que per el servidor .102 desinstalaré el apache i posaré un balancejador de carrega "Haproxy".
+Com hem comentat abans un playbook pot contenir varies plays, en el següent exemple instal·laré sobre el servidor Apache del servidor .101 un servidor DNS mentes que pel servidor .102 desinstal·laré l'Apache i posaré un balancejador de càrrega "Haproxy".
 
 40.png
 
 41.png
 
+#############################33
 __Llista de tasques en un Playbook__
 
 Les _Plays_ podem contenir una llista de tasques com pot ser l'instalació d'un paquet, l'inici/finalització d'un servei, etc. Però aquestes tasques s'executen en ordre i només es pot fer una al mateix temps, **es important saber que l'odre de les tasques es el mateix per tots els nodes** d'aquesta manera podem concloure que amb Ansible si una tasca falla aquesta es torna a executar un altre cop obtenint com a resultat que un mòdul que s'ha executat varies vegades tingui el mateix efecte com si se haguès realitzat un sol cop.
