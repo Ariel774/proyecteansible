@@ -65,20 +65,16 @@ Utilitza YAML per a descriure les accions a realitzar i configurar les diferents
  * Amb Ansible podem aprovisionar-nos de les últimes plataformes disponibles al núvol com hosts virtuals, dispositius de xarxa, físics...
 
 * Gestió de la configuració
-
- * Podem gestionar totes les nostres configuracions de forma molt ràpida i eficaç, ja que els seus fitxers són molt configurables.
+  * Podem gestionar totes les nostres configuracions de forma molt ràpida i eficaç, ja que els seus fitxers són molt configurables.
 
 * Orquestació
-
- * Ansible, fa ús de la seva potencia per poder desplegar i gestionar molts servidors de forma paral·lela simple i segura.
+  * Ansible, fa ús de la seva potencia per poder desplegar i gestionar molts servidors de forma paral·lela simple i segura.
 
 * Desplegament d'aplicacions
-
- * Amb aquesta característica podem seguir un control del cicle de vida d'una aplicació, aquesta es controla amb un deployment anomenat Ansible Tower.
+  * Amb aquesta característica podem seguir un control del cicle de vida d'una aplicació, aquesta es controla amb un deployment anomenat Ansible Tower.
 
 * Seguretat i compliment
-
- * Ansible ens dóna la possibilitat de definir la seguretat dels nostres sistemes de forma molt sencilla utilitzant els _Playbooks_ podem definir regles en l'àmbit de Firewall, permisos d'usuaris, carpetes, grups...
+  * Ansible ens dóna la possibilitat de definir la seguretat dels nostres sistemes de forma molt sencilla utilitzant els _Playbooks_ podem definir regles en l'àmbit de Firewall, permisos d'usuaris, carpetes, grups...
 
 <a name="disponibilitat"></a>
 ### 2.2 Disponibilitat
@@ -403,16 +399,16 @@ Com hem comentat abans un playbook pot contenir varies plays, en el següent exe
 
 41.png
 
-#############################33
 __Llista de tasques en un Playbook__
 
-Les _Plays_ podem contenir una llista de tasques com pot ser l'instalació d'un paquet, l'inici/finalització d'un servei, etc. Però aquestes tasques s'executen en ordre i només es pot fer una al mateix temps, **es important saber que l'odre de les tasques es el mateix per tots els nodes** d'aquesta manera podem concloure que amb Ansible si una tasca falla aquesta es torna a executar un altre cop obtenint com a resultat que un mòdul que s'ha executat varies vegades tingui el mateix efecte com si se haguès realitzat un sol cop.
+Les _Plays_ podem contenir una llista de tasques com pot ser l'instal·lació d'un paquet, l'inici/finalització d'un servei, etc. Però aquestes tasques s'executen en ordre i només es pot fer una al mateix temps, **és important saber que l'ordre de les tasques és el mateix per tots els nodes** d'aquesta manera podem concloure que amb Ansible si una tasca falla, aquesta es torna a executar un altre cop obtenint com a resultat que un mòdul que s'ha executat vàries vegades tingui el mateix efecte com si se hagués realitzat un sol cop.
 
-Totes les tasques tenem que tenir obligatoriament un `name` que el podrem veure a l'output després d'executar la comanda de Ansible `ansible-playbook`, així podem saber que es el que estem fem.
+Totes les tasques tenen que tenir obligatòriament un `name`que el podrem veure a l'output després d'executar la comanda d'Ansible `ansible-playbook`, així podem saber que és el que estem fem.
 
 42.png
 
-Per declara una tasca utilitzen els mòduls que pot incluir Ansible, com pot ser el service, apt, order, user... en aquest exemple ens assegurem que el servei de Apache estigui sempre present i en funcionament.
+Per declara una tasca utilitzen els mòduls que pot incloure Ansible, com pot ser el service, apt, order, user... en aquest exemple ens assegurem que el servei d' Apache estigui sempre present i en funcionament.
+
 ```
 ---
 - hosts: all
@@ -438,25 +434,25 @@ Altres mòduls que s'utilitzem amb freqüència es el `command` i el `shell` aqu
 ```
 __Opcions d'un Playbook__
 
-Ansible de forma predeterminada té moltes opcions que es troben assignades sense que nosaltres ho sapiguem com pot ser la ruta del nostre inventari o el _verbose_ que ens monstrarà per sortida totes les comandes emprades durant l'execució, tot això es pot modificar gracies a les opcions següents:
+Ansible de forma predeterminada té moltes opcions que es troben assignades sense que nosaltres ho sapiguem com pot ser la ruta del nostre inventari o el _verbose_ que ens mostrarà per sortida totes les comandes emprades durant l'execució, tot això es pot modificar gràcies a les opcions següents:
 
-* Per exemple, en Ansible la ruta del nostre inventari es `/etc/ansible/hosts` no obstant podem modificar aquesta ruta perquè apunti cap a un altre fitxer amb la comanda `--inventory=/ruta/que/volem` o `(-i PATH)`
+* Per exemple, en Ansible la ruta del nostre inventari és `/etc/ansible/hosts` no obstant podem modificar aquesta ruta perquè apunti cap a un altre fitxer amb la comanda `--inventory=/ruta/que/volem' o '(-i PATH)`
 
 En aquesta imatge podem veure com tenim un fitxer a la ruta `/home/vagrant/projecte` i volem executar el nostre playbook per reiniciar els serveis webs, llavors executarem la següent comanda indicant el path del inventari alternatiu:
- 
- 45.png
- 
-Com podem veure encara que el host .103 no existeixi Ansible continuarà executant les comandes sense cap tipus de problema.
 
-* En aquest segon exemple comprovarem com funciona la comanda `--verbose (-v)` en Ansible perquè ens monstri totes les comandes, podem afegir el paràmetre `-vvvv` per obtenir tots els detalls de l'execució.
+45.png
+
+Com podem veure encara que el host .103 no existeixi Ansible continuarà executant les comandes sense cap mena de problema.
+
+* En aquest segon exemple comprovarem com funciona la comanda `--verbose (-v)` en Ansible perquè ens mostri totes les comandes, podem afegir el paràmetre `-vvvv` per obtenir tots els detalls de l'execució.
 
 46.png
 
-* La següent opció es la de afegir variables durant l'execució del nostre Playbook amb la comanda `--extra-vars=VARS` o `-e VARS` cal recordar que si afegim variables aquestes es tenem que declarar en formar clau-valor **"clau1=valor1,clau2=valor2"**.
+* La següent opció és la d'afegir variables durant l'execució del nostre Playbook amb la comanda `--extra-vars=VARS` o `-e VARS` cal recordar que si afegim variables aquestes és tenen que declarar en formar clau-valor **"clau1=valor1,clau2=valor2"**.
 
-* També tenim l'opció d'indicar el tipus de connexió amb la comanda `--connections=TYPE` o `-c TYPE` això fa referència al tipus de connexió que volem fer durant l'execució del playbook, **per defecte es SSH** encara que podem executar el nostre playbook en **local** gràcies a aquesta opció.
+* També tenim l'opció d'indicar el tipus de connexió amb la comanda `--connections=TYPE` o `-c TYPE` això fa referència al tipus de connexió que volem fer durant l'execució del playbook, **per defecte és SSH** encara que podem executar el nostre playbook en **local** gràcies a aquesta opció.
 
-* Després tenim l'opció `--check` que ens permet fer una simulació de les nostres comandes per comprovar que s'executen de forma correcta a els nostres servidors.
+* Després tenim l'opció `--check` que ens permet fer una simulació de les nostres comandes per comprovar que s'executen de forma correcta als nostres servidors.
 
 <a name="hostsiusuaris"></a> 
 ### 3.6 Hosts i usuaris
