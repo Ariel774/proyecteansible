@@ -17,7 +17,9 @@
   4.1 [Hosts i grups]<br>
   4.2 [Hosts i variables]<br>
   4.3 [Organización de variables]<br>
-5. [Rols e includes](#rolesincludes)<br>
+5. [Organització amb Ansibles](#organitzacio)<br>
+  5.1 [Includes](#includes)<br>
+  5.2 [Roles](#roles)<br>
 6. [Ansible portat a la pràctica]<br>
   6.1 [Començant el projecte]<br>
   6.2 [Creació de rols i configuració de màquina]<br>
