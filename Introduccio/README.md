@@ -17,7 +17,7 @@
   4.1 [Hosts i grups]<br>
   4.2 [Hosts i variables]<br>
   4.3 [Organización de variables]<br>
-5. [Rols e includes]<br>
+5. [Rols e includes](#rolesincludes)<br>
 6. [Ansible portat a la pràctica]<br>
   6.1 [Començant el projecte]<br>
   6.2 [Creació de rols i configuració de màquina]<br>
@@ -650,6 +650,87 @@ En la següent imatge veurem que Ansible busca en les carpetes `/hosts_vars` i `
 ``` development
 [currentservers] #Nom del fitxer que es troba dintre de /etc/ansible/group_vars/currentservers
 development ansible_host=192.168.10.101 ansible_connection=ssh ansible_user=root #nom del fitxer "development" que es troba en /host_vars
+```
+
+## 5. Roles e includes
+
+Com ja hem vist abans dintre de un fitxer _Playbook_ podem enmagatzemar molta informació, tasques, variables a fer, però una forma molt més eficaç de poder organitzar i reutilitzar els nostres de fitxer de configuració YAML seria utilitzar includes per poder utilitzar parts molt més petites de fitxers molt grans.
+
+__Include de tasques__
+
+Per exemple, el nostre fitxer original de `apache-playbook.yml` té aquesta estructura:
+
+```
+---
+- hosts: all
+  remote_user: root
+  tasks:
+    - name: Instal·lar Apache en la seva última versió
+      apt: name=apache2 state=latest
+    - name: Inciciar el nostre Apache
+      service: name=apache2 state=started enabled=yes
+...
+```
+
+Amb els includes ho podem deixar d'aquesta manera:
+
+```
+---
+- hosts: all
+  remote_user: root
+  tasks:
+    - include: apache-include.yml
+...
+```
+
+Com ja tenim les variables de `remote_user` i `hosts` el notre fitxer `apache-include.yml` que el contingut que anirà a l'include deuria de quedar de la següent manera:
+
+```
+---
+- name: Instal·lar Apache en la seva última versió
+  apt: name=apache2 state=latest
+- name: Inciciar el nostre Apache
+  service: name=apache2 state=started enabled=yes
+...
+```
+Amb això podriem reutilitzar aquest codi per qualsevol altre projecte amb el que tinguen que instal·lar l'Apache.
+
+__Include de handlers__
+
+Aquest mateix include per l'instalació del Apache també es pot combinar amb els Includes dels Handlers.
+
+Fitxer `includehandlers.yml`
+
+```
+- name: Iniciar PHP
+  service: name=php state=started enabled=yes
+- name: Iniciar Apache
+  service: name=apache2 state=restarted enabled=yes
+```
+El resultat de la nostra configuració amb tasques i handlers seria el seguent:
+
+```
+---
+- hosts: all
+  remote_user: root
+  tasks:
+    - include: apache-playbook.yml
+  handlers:
+    - include: includehandlers.yml #Include del nostre handler.
+...
+```
+__Include de playbooks__
+
+També tenim la possibilitat de incluir altres playbooks dintre de un mateix playbook utilitzant la mateixa sintaxis, en el següent cas afegirem includes de les nostres configuracions web, bbdd i backup.
+
+```
+---
+- hosts: all
+  remote_user: root
+  include: webserver-playbook.yml
+  include: db-playbook.yml
+  include: backup-playbook.yml
+...
 ```
 
 ## 6. Ansible portat a la pràctica. (DESENVOLUPAMENT)
