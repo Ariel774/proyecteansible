@@ -736,6 +736,32 @@ També tenim la possibilitat de incluir altres playbooks dintre de un mateix pla
   include: backup-playbook.yml
 ...
 ```
+
+Per cridar un rol amb playbook utilitzariem la seguent sintaxis:
+
+```
+---
+- hosts: servidorsweb
+  roles:
+    - bbdd #configuracions de tots els servidors de base de dades
+    - apache #configuració dels nostres servidors web
+...
+```
+
+Perquè un rol pugui funcionar a nivell de fitxers deurà de tenir la següent estructura amb el fitxer **main.yml** aquest fitxer es clau per executar els nostres rols si existeix l'arxiu s'afegirà a la nostra _play_, si no existeix el rol no s'executarà.
+
+Estructura de un rol:
+
+* roles/proyecte/tasks/main.yml #les TASQUES s'afegiran al nostre _Play_
+* roles/proyecte/handlers/main.yml #Els HANDLERS s'afegiran al _Play_
+* roles/proyecte/vars/main.yml #Les variables del fitxer s'afegiran al _Play_
+* roles/proyecte/defaults/main.yml #Els parametres per DEFECTE s'afegiran al _Play_
+* roles/proyecte/meta/main.yml #Les dependencies llistas s'afegiran a la llista de rols.
+
+Com he vist tenim que anomenar les carpetes en funció de la seva funció task, handlers, vars... en canvi n'hi han dues carpetas de configuració que son `roles/proyecte/files` (estatics) y `/roles/proyecte/templates` (dinamics) que no cal que tinguin el fitxer main.yml.
+
+Si el directori no existeix, Ansible l'ignora.
+
 <a name="roles"></a>
 ### 5.2 Roles
 
