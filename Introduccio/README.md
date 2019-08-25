@@ -13,10 +13,10 @@
   3.5 [Estructura de un Playbook](#estructuraplaybook)<br>
   3.6 [Hosts i usuaris](#hostsiusuaris)<br>
   3.7 [Handlers](#handlers)<br>
-4. [Iventaris]<br>
-  4.1 [Hosts i grups]<br>
-  4.2 [Hosts i variables]<br>
-  4.3 [Organización de variables]<br>
+4. [Iventaris](#inventaris)<br>
+  4.1 [Hosts i grups](#hostsigrups)<br>
+  4.2 [Hosts i variables](#hostsivars)<br>
+  4.3 [Organización de variables](#organitzaciovars)<br>
 5. [Organització amb Ansibles](#organitzacio)<br>
   5.1 [Includes](#includes)<br>
   5.2 [Roles](#roles)<br>
@@ -32,7 +32,7 @@
 
 Va néixer de la necessitat de poder administrador diversos servidors de forma molt més sencilla i fàcil amb el permís de Puppet per automatitzar les tasques d'un "DevOps", això va ser possible gràcies a Michael DeHann, extreballador de Puppet que buscava una eina que és pogués automatitzar, amb potència i escalabilitat. Oficialment Ansible es va llençar el 20 de febrer de l'any 2012.
 
-Com a dada curiosa la paraula "Ansible" va aparèixer per primera vegada en la literatura de ciència-ficció d' Ursula Le Guin l'any 1966 en _El món de Rocannon_ fent referència a un dispositiu de comunicació la qual era més ràpida que la llum i exercia les seves funcions de forma instantània.
+Com a dada curiosa la paraula "Ansible" va aparèixer per primera vegada en la literatura de ciència-ficció d' Ursula Le Guin l'any 1966 en _El món de Rocannon_ fent referència a un dispositiu de comunicació el qual era més ràpida que la llum i exercia les seves funcions de forma instantània.
 
 <a name="ansible"></a>  
 ## 2. ¿Qué és Ansible?
@@ -502,8 +502,9 @@ En el següent exemple nosaltres tenim un servidor sense l'Apache configurat, am
 
 43.png
 
+<a name="inventaris"></a>  
 ## 4. Inventaris
-
+<a name="hostsigrups"></a>  
 ### 4.1 Hosts i grups
 
 Dintre d'Ansible existeixen diverses formes d'indicar-li al software les tasques i/o gestions a orquestrar que volem fer.
@@ -557,7 +558,7 @@ server[a:z]azambrano.com #Recorrem tots els servidors des de la A fins la Z
 db[1:7].azambrano.com:2222 #També ho podem fer d'aquesta forma amb numeros.
 
 ```
-
+<a name="hostsivars"></a>  
 ### 4.2 Hosts i variables
 
 Les variables dintre d'aquests fitxer podem venir predefinides com les de ansible_connection o ansible_user però també hem podem crear de personalitzades
@@ -625,6 +626,7 @@ En l'inventari per defecte existeixen dos grups: `all` que conté tots els hosts
 
 grupsperdefecte.png
 
+<a name="organitzaciovars"></a>  
 ### 4.3 Organització de les variables
 
 Encara que les variables es poguin posar dintre del fitxer `/etc/ansible/hosts` en la bona pràctica Ansible recomana dividar aquestes dues seccions, ja que en el cas del fitxer _hosts_ té la funció d'inventari i no es deuria de fer encara que sigui possible.
