@@ -435,7 +435,24 @@ Altres mòduls que s'utilitzem amb freqüència es el `command` i el `shell` aqu
 ```
 __PRE_TASKS i POSTS_TASKS__
 
-Les tasques també es podem executar abans o després 
+En Ansible les tasques també es podem executar abans o després de executar alguna play, per exemple si volem fer un `upgrade` del nostre servidor però abans tenim que fer un `upgrade` ho fariem d'aquesta forma:
+
+Per realitzar una tasca abans de fer la principal farem ús del paràmetre `pre_tasks` i per fer una posterior `post_tasks`.
+
+```
+- hosts: 192.168.10.101
+  remote_user: root
+  pre_tasks:
+    - name: Pre tasca
+      command: "Actualitzant tots els paquets"
+  tasks:
+    - name: Upgrade server
+      apt: name="*" state=latest
+  post_tasks:
+    - name: Post tasca
+      command: echo "servidor actualitzat"
+...
+```
 __Opcions d'un Playbook__
 
 Ansible de forma predeterminada té moltes opcions que es troben assignades sense que nosaltres ho sapiguem com pot ser la ruta del nostre inventari o el _verbose_ que ens mostrarà per sortida totes les comandes emprades durant l'execució, tot això es pot modificar gràcies a les opcions següents:
@@ -788,6 +805,10 @@ Estructura de un rol:
 Com he vist tenim que anomenar les carpetes en funció de la seva funció task, handlers, vars... en canvi n'hi han dues carpetas de configuració que son `roles/proyecte/files` (estatics) y `/roles/proyecte/templates` (dinamics) que no cal que tinguin el fitxer main.yml.
 
 Si el directori no existeix, Ansible l'ignora.
+
+__Rols - Variables per defecte__
+
+Com ja hem vist abans les variables per defecte es posem a la ruta `/role/nomdelanostracarpeta/default/main.yml`, aquestes variables tenem la mínima priorirtat entre totes les variables disponibles i les pot sobreescriure qualsevol altre variable d'un rol o del inventari.
 
 ## 6. Ansible portat a la pràctica. (DESENVOLUPAMENT)
 
