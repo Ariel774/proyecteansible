@@ -433,6 +433,9 @@ Altres mòduls que s'utilitzem amb freqüència es el `command` i el `shell` aqu
       shell: mkdir /home/vagrant/novacarpeta
 ...
 ```
+__PRE_TASKS i POSTS_TASKS__
+
+Les tasques també es podem executar abans o després 
 __Opcions d'un Playbook__
 
 Ansible de forma predeterminada té moltes opcions que es troben assignades sense que nosaltres ho sapiguem com pot ser la ruta del nostre inventari o el _verbose_ que ens mostrarà per sortida totes les comandes emprades durant l'execució, tot això es pot modificar gràcies a les opcions següents:
