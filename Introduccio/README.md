@@ -653,8 +653,10 @@ En la següent imatge veurem que Ansible busca en les carpetes `/hosts_vars` i `
 [currentservers] #Nom del fitxer que es troba dintre de /etc/ansible/group_vars/currentservers
 development ansible_host=192.168.10.101 ansible_connection=ssh ansible_user=root #nom del fitxer "development" que es troba en /host_vars
 ```
-
+<a name="organitzacio"></a>
 ## 5. Roles e includes
+<a name="includes"></a>
+### 5.1 Includes
 
 Com ja hem vist abans dintre de un fitxer _Playbook_ podem enmagatzemar molta informació, tasques, variables a fer, però una forma molt més eficaç de poder organitzar i reutilitzar els nostres de fitxer de configuració YAML seria utilitzar includes per poder utilitzar parts molt més petites de fitxers molt grans.
 
@@ -734,6 +736,8 @@ També tenim la possibilitat de incluir altres playbooks dintre de un mateix pla
   include: backup-playbook.yml
 ...
 ```
+<a name="roles"></a>
+### 5.2 Roles
 
 ## 6. Ansible portat a la pràctica. (DESENVOLUPAMENT)
 
