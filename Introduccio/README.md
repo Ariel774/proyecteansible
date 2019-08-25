@@ -739,6 +739,25 @@ També tenim la possibilitat de incluir altres playbooks dintre de un mateix pla
 <a name="roles"></a>
 ### 5.2 Roles
 
+Una de les principals prioritats que tenin que tenir amb Ansible és la correcta organització dels nostres fitxers, variables, codi, etc. Ansible per tractar de resoldre aquest problema d'organització i manteniment va implementar els **rols** que són paquets de configuracions que es poden reutilitzar en qualsevol altre servidor.
+
+El rol ens serveix per detectar sistemes operatius, crear variables, templates, arxius de configuració, etc. Dit d'una altre forma, **un rol son includes que es troben configurats de forma estructurada.**
+
+L'estructura de un rol es la següent:
+
+```
+webservers.yml #el nom del playbook.
+roles/
+  common/
+    files/
+    templates/
+    tasks/
+    handlers/
+    vars/
+    defaults/
+    meta/
+```
+
 ## 6. Ansible portat a la pràctica. (DESENVOLUPAMENT)
 
 L'estructura que utilitzarem per fer totes les nostres proves en Ansible serà la seguent:
