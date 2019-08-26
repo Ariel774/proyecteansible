@@ -49,7 +49,7 @@ A més de ser de codi obert, és gratuïta, ja que utilitza una llicència **GNU
 
 Ansible també permet treballar amb els proveïdors del núvol, com AWS, Azure o Google Cloud Platform. Gestionant components com a xarxes, grups de seguretat, adreces IP o claus públiques.
 
-queesansible.png
+![alt text](../img/queesansible.png "queesansible")
 
 ¿Com es connecta Ansible als diferents nodes per a poder gestionar-ho?
 
@@ -83,7 +83,7 @@ Utilitza YAML per a descriure les accions a realitzar i configurar les diferents
 En l'actualitat Ansible es distribueix en Fedora, Red Hat, Linux, CentOs, i Scientific Linux mitjançant els paquets EPEL (Extra Packages for Enterprise Linux).
 A més dels SO anteriorment mencionats, aquesta eina també es troba distribuïda i és podem trobar des de un buscador de paquets: https://goo.gl/y6ad6g
 
-6.png
+![alt text](../img/6.png "6")
 
 En el nostre cas utilitzaren una màquina virtual i descarregarem l'eina més actual per comandes.
 El podem trobar per dispositius Mac no obstant això, **no està disponible per Windows**.
@@ -97,7 +97,7 @@ Com abans hem comentat Ansible és una eina que serveis per instal·lar, configu
 
 - Nodo: Es maneja pel controlador mitjançant una connexió SSH.
 
-arquitectura.png
+![alt text](../img/arquitectura.png "arquitectura"
 
 La màquina que realitza la tasca de controlador reconeix als altres nodes mitjançant un inventari, que, per organitzar-ho fa un desplegament de mòduls sobre el protocol SSH, aquest desplegament fa que els mòduls desplegats no siguin controlats pel controlador, sinó que **és la mateixa màquina remota la que s'encarrega de fer-ho** d'aquesta manera la **màquina local no consumeix recursos ni processos executant-se en segon pla.**
 
@@ -119,7 +119,7 @@ En aquest senzill exemple procedirem a instal·lar el paquet o mòdul NTP.
 
 `$ansible all -b -m apt -a "name=ntp state=installed"`
 
-22.png
+![alt text](../img/22.png "22"
 
 Com s' observa en la captura comproven que en el node amb l'IP 192.168.10.101 el paquet NTP ja és troba instal·lat, en canvi en la IP 192.168.10.102 encara no el té, Ansible té l'avantatge que comprova el servidor penjant que no tingui el mòdul i l'instal·la sense donar cap problema de tornar a reinstal·lar el mòdul un altre cop pel servidor.
 
@@ -134,11 +134,11 @@ Ara comproven que segons Ansible el paquet NTP és troba en estat **SUCCESS** qu
 
 Si canviem l' *state* per "name=ntp **state=absent"** comprovaren que l'output és que ha eliminat el mòdul, com si és tractés d'un `remove`.
 
-24.png
+![alt text](../img/24.png "24")
 
 Un cop tenim el nostre paquet NTP instal·lat ja podem procedir a comprovar el seu "Status" amb la comanda `$ansible all -b -a "service ntp status`.
 
-25.png
+![alt text](../img/25.png "25")
 
 __Usuaris i grups__
 
@@ -146,7 +146,7 @@ Gràcies a Ansible, ara remotament podem administrar, gestionar, crear i modific
 
 * `$ansible all -b -m group -a "name=asix state=present"`(En aquest cas el **PRESENT** no vol dir instal·lar, sinó que estigui present).
 
-26.png
+![alt text](../img/26.png "26")
 
 En la captura es pot observar que Ansible després de crear el grup també et diu el nom d'aquest juntament amb el seu GID, a més he posat una captura amb les dues comandes dues vegades perquè es pugui veure com en la primera part es detecta un canvi i en la segona ens dóna un **SUCCESS** sense cap modificació.
 
@@ -154,7 +154,7 @@ Si ara volem crear un usuari dintre d'un grup, i al mateix temps crear la seva h
 
 * `$ansible all -b -m user -a "name=ariel group=asix createhome=yes"`
 
-27.png
+![alt text](../img/27.png "27")
 
 De la mateixa forma que amb el grup això també ens dona un output amb les diferents variables que tenim del nostre usuari, gid, home i grup.
 
