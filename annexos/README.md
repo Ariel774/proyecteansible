@@ -125,7 +125,38 @@ Per exemple en les següents captures podem veure les IPs del nostre servidor, l
 
 ![alt text](../img/21.png "21")
 
+## Instalació del servidor HAProxy
 
+Per instal·lar el meu servidor HAProxy he recreat la següent estructura en el meu directori de Ansible.
+
+```
+├── ansible.cfg
+├── group_vars
+│   ├── all.yml
+│   └── loadbalancers.yml
+├── hosts
+├── hosts_vars
+│   └── loadbalancer.yml 
+├── loadbalancers.yml
+├── logs
+│   └── ansible.log
+└── roles
+    └── haproxy
+        └── tasks
+            └── main.yml
+```
+
+<a name="loadbalancer"></a>
+Fitxer d'instal·lació del HAProxy `roles/haproxy/tasks/main.yml`
+
+```
+---
+- name: Ensure HAProxy is installed
+  apt: name=haproxy  state=installed
+...
+```
+
+loadbalancer1.png
   
 
 
