@@ -39,4 +39,18 @@ Havent acabat la configuració prèvia de nostres maquines podem procedir a entr
 
 Aquesta comprovació de data i hora la fem perquè encara que algunes aplicacions tolerim una petita diferencia horaria si es sobrepasa el límit podem tenir problemes d'incongruencies entre els nostres nodes, la forma més sencilla es utilitzan el NTP *Network Time Protocol*.
 
+__Hosts del proyecte__
 
+Dintre del fitxer `hosts` he afegit els meus servidors perquè Ansible els pugui controlar, juntament amb les serves varoables de grups y hosts.
+
+Fitxer `/etc/ansible/hosts`
+
+hosts.png
+
+__Estructura del nostre sistema de fitxers__
+
+estructurafinal.png
+
+__Instal·lació del nostre balancejador de càrrega__
+
+Per fer-ho he tingut que crear un rol anomenat `haproxy` on he posat el codi per instal·lar el haproxy en el nostre servidor.
