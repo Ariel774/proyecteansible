@@ -95,8 +95,7 @@ Abans de fer qualsevol tasca relacionada amb Ansible tenim que comprovar que els
 
 * Comprovació del hostname de tots els nodes de forma paralela amb Ansible:
   * `$ansible all -a "hostname"` --> Aquesta comanda té com a funció dir-nos els hostname de totes les màquines que es troven controlades per Ansible, aquesta comanda equival a `$ansible 192.168.10.101,192.168.10.10,192.168.10.11,192.168.10.12 -a "hostname"`.
- 
- ####CAMBIAAAAAAAAAAAAAR
+
   ![alt text](../img/15.png "15")
 
 Per defecte, Ansible executa les comandes de forma paral·lela per acabar abans, si tenim dos servidors com es el cas, no notarem la diferente però si afegim més servidors comprovare que funciona més ràpid si paral·lelitzem.
@@ -104,12 +103,11 @@ Per defecte, Ansible executa les comandes de forma paral·lela per acabar abans,
 * Per comprovar la execució de comades de forma sequencial utilitzarem el paràmetre "-f 1".
   * `$ansible all -a "hostname" -f 1` (Aquest paràmetre només s'utilitza quan tinguem molts servidors i el nostre ample de banda no sigui molt bo, per això es recomana que per les xarxes més lentes utilitzin aquest paràmetre.
 
-#####CAMBIAAAAAAAAAAAAAR
   ![alt text](../img/16.png "16")
 
 * També podem observar l'espai dels nostres servidors com si fos una comanda cap al nostre servidor local.
   * `$ansible all -a "df -h"`
-######CAMBIAAAAAAAAAAAAAAAAAAAAR
+
   ![alt text](../img/17.png "17")
 
 * Comprovació de la nostra memòria cau per poder comprovar que tenim espai suficient per poder instalar un WordPress o Apache.
