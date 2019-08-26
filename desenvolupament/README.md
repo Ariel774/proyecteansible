@@ -53,4 +53,14 @@ estructurafinal.png
 
 __Instal·lació del nostre balancejador de càrrega__
 
-Per fer-ho he tingut que crear un rol anomenat `haproxy` on he posat el codi per instal·lar el haproxy en el nostre servidor.
+Per fer-ho he tingut que crear un rol anomenat `haproxy` on he posat el següent codi per instal·lar el HAProxy en el nostre servidor.
+
+```
+---
+- name: Servidor de càrrega (LoadBalancer)
+  hosts: loadbalancers
+  roles:
+    - role: haproxy
+...
+```
+[Més informació sobre l'instal·lació d'HAProxy.](../annexos/#loadbalancer)
