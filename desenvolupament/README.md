@@ -1,5 +1,9 @@
 # Desenvolupament del projecte
 
+##Objectiu
+
+- En el nostre projecte farem l'instalació d' un balancejador de carrega, l'instalació de dos servidors web amb PHP i Apache en el que executarem un WordPress.
+
 Per començar a desenvolupar aquest projecte orientat a la pràctica he utilitzat un recurs molt innovador per crear, modificar i gestionar les meves màquines virtuals a partir de Virtual-Box, això ho he fet amb Vagrant.
 
 fotovagrant.png
