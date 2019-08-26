@@ -97,7 +97,7 @@ Com abans hem comentat Ansible és una eina que serveis per instal·lar, configu
 
 - Nodo: Es maneja pel controlador mitjançant una connexió SSH.
 
-![alt text](../img/arquitectura.png "arquitectura"
+![alt text](../img/Arquitectura-Ansible.png "arquitectura"
 
 La màquina que realitza la tasca de controlador reconeix als altres nodes mitjançant un inventari, que, per organitzar-ho fa un desplegament de mòduls sobre el protocol SSH, aquest desplegament fa que els mòduls desplegats no siguin controlats pel controlador, sinó que **és la mateixa màquina remota la que s'encarrega de fer-ho** d'aquesta manera la **màquina local no consumeix recursos ni processos executant-se en segon pla.**
 
@@ -119,7 +119,7 @@ En aquest senzill exemple procedirem a instal·lar el paquet o mòdul NTP.
 
 `$ansible all -b -m apt -a "name=ntp state=installed"`
 
-![alt text](../img/22.png "22"
+![alt text](../img/22.png "22")
 
 Com s' observa en la captura comproven que en el node amb l'IP 192.168.10.101 el paquet NTP ja és troba instal·lat, en canvi en la IP 192.168.10.102 encara no el té, Ansible té l'avantatge que comprova el servidor penjant que no tingui el mòdul i l'instal·la sense donar cap problema de tornar a reinstal·lar el mòdul un altre cop pel servidor.
 
@@ -160,7 +160,7 @@ De la mateixa forma que amb el grup això també ens dona un output amb les dife
 
 Comproven que l'usuari existeix com a tal:
 
-28.png
+![alt text](../img/28.png "28")
 
 Com observen ha creat l'usuari en el servidor amb l'IP acabada en .101, però de la mateixa forma també ho farà en l'altre.
 
@@ -175,7 +175,7 @@ Aquest mòdul es un dels més utilitzats en l'actualitat, ja que gràcies al fet
 
 * `$ansible all -b -m stat -a "path=/etc/passwd"`
 
-29.png
+![alt text](../img/29.png "29")
 
 Mitjançant aquesta comanda podem observa el path del fitxer, si es executable, la seva mida, i moltes altres característiques d'aquest.
 
@@ -183,7 +183,7 @@ Mitjançant aquesta comanda podem observa el path del fitxer, si es executable, 
 
 * `$ansible all -b -m copy -a "src=/etc/hosts dest=/home/ariel/hosts`
 
-30.png
+![alt text](../img/30.png "30")
 
 Com observem es pot veure la mida del fitxer, el seu propietari i la destinació d'aquest.
 
@@ -195,7 +195,7 @@ Ara utilitzarem el mòdul anomenat **Fetch** que fa el mateix que el copy però 
 
 * `$ansible all -b -m fetch -a "src=/home/ariel/hosts dest=/home/vagrant"`
 
-31.png
+![alt text](../img/31.png "31")
 
 Com podem observar ens crea dos directoris amb l'IP dels nostres servidors.
 
@@ -205,23 +205,23 @@ Per la creació modificació de fitxers i carpetes, juntament amb altres paràme
 
 * `$ansible all -b -m file -a "dest=/home/ariel/prova1 mode=644 state=touch"`
 
-32.png
+![alt text](../img/32.png "32")
 
 * Per crear una **CARPETA** utilitzarem la següent comanda.
 
 * `$ansible all -b -m file -a "dest=/home/ariel/ASIX mode=644 state=directory"`
 
-33.png
+![alt text](../img/33.png "33")
 
 Comproven que existeixen:
 
-34.png
+![alt text](../img/34.png "34")
 
 * Si volem eliminar un fitxer o carpeta només deuríem de posar en **state=absent**.
 
 * `$ansible all -b -m file -a "dest=/home/ariel/ASIX mode=644 state=absent"`
 
-35.png
+![alt text](../img/35.png "35")
 
 Per veure més informació sobre els paràmetres a posar, [aqui](https://docs.ansible.com/ansible/latest/modules/file_module.html).
 
@@ -234,11 +234,11 @@ Les tasques que funcionen de forma periòdica dintre de un sistema s'administren
 
 * `$ansible all -u root -m cron -a "name='cron-asix' hour=12 job='/script.sh"`
 
-36.png
+![alt text](../img/36.png "36")
 
 Comproven que existeix el cron en els nostres nodes.
 
-37.png
+![alt text](../img/37.png "37")
 
 En la imatge observem que és un cron creat per Ansible amb el nom escollit per nosaltres.
 
@@ -365,7 +365,7 @@ ruta: "/etc/{{ home }}" #Aquesta variable "home" té el mateix contigut que la p
 
 Per començar a entendre el que és un playbook hem de recordar que un play no és res més que una sèrie de rols que utilitza Ansible per trobar uns determinats servidors els quals són representats amb tasques, aquests plays en conjunt formen el que anomenem playbooks.
 
-38.png
+![alt text](../img/38.png "38")
 
 El play s'encarrega de trucar al servidor que nosaltres en indicat dintre del codi YAML, aquest tipus de plays ens permeten orquestrar molts tipus de nodes encara que no tinguin res a veure y fer les modificacions necessàries si així ho volguéssim.
 
@@ -390,15 +390,15 @@ tasks:
 
 Un cop hem fet això podem executar la nostra comanda amb la comanda `ansible-playbook + fitxer.yml` d'Ansible.
 
-39.png
+![alt text](../img/39.png "39")
 
 Com podem veure en la captura l'execució es divideix en vàries parts, la primera és la _Play_ que executarà a tots els hosts que li hem dit, després es troba els _Gathering Facts_ que s'encarrega de distribuir els paquets als dos allotjaments, després observen la _Task_ que en aquest cas li hem posat com a nom "Instal·lar Apache en la seva última versió" i per últim el _Play recap_ que es la notificació final que ens dóna Ansible sobre la correcta instal·lació del paquet.
 
 Com hem comentat abans un playbook pot contenir varies plays, en el següent exemple instal·laré sobre el servidor Apache del servidor .101 un servidor DNS mentes que pel servidor .102 desinstal·laré l'Apache i posaré un balancejador de càrrega "Haproxy".
 
-40.png
+![alt text](../img/40.png "40")
 
-41.png
+![alt text](../img/41.png "41")
 
 __Llista de tasques en un Playbook__
 
@@ -406,7 +406,7 @@ Les _Plays_ podem contenir una llista de tasques com pot ser l'instal·lació d'
 
 Totes les tasques tenen que tenir obligatòriament un `name`que el podrem veure a l'output després d'executar la comanda d'Ansible `ansible-playbook`, així podem saber que és el que estem fem.
 
-42.png
+![alt text](../img/42.png "42")
 
 Per declara una tasca utilitzen els mòduls que pot incloure Ansible, com pot ser el service, apt, order, user... en aquest exemple ens assegurem que el servei d' Apache estigui sempre present i en funcionament.
 
@@ -454,7 +454,7 @@ Per realitzar una tasca abans de fer la principal farem ús del paràmetre `pre_
 ...
 ```
 
-preandpost.png
+![alt text](../img/preandpost.png "preandpost")
 
 __Opcions d'un Playbook__
 
@@ -464,13 +464,13 @@ Ansible de forma predeterminada té moltes opcions que es troben assignades sens
 
 En aquesta imatge podem veure com tenim un fitxer a la ruta `/home/vagrant/projecte` i volem executar el nostre playbook per reiniciar els serveis webs, llavors executarem la següent comanda indicant el path del inventari alternatiu:
 
-45.png
+![alt text](../img/45.png "45")
 
 Com podem veure encara que el host .103 no existeixi Ansible continuarà executant les comandes sense cap mena de problema.
 
 * En aquest segon exemple comprovarem com funciona la comanda `--verbose (-v)` en Ansible perquè ens mostri totes les comandes, podem afegir el paràmetre `-vvvv` per obtenir tots els detalls de l'execució.
 
-46.png
+![alt text](../img/46.png "46")
 
 * La següent opció és la d'afegir variables durant l'execució del nostre Playbook amb la comanda `--extra-vars=VARS` o `-e VARS` cal recordar que si afegim variables aquestes és tenen que declarar en formar clau-valor **"clau1=valor1,clau2=valor2"**.
 
@@ -520,7 +520,7 @@ Aquesta acció són llançades al final de cadascuna de les nostres _plays_, si 
 
 En el següent exemple nosaltres tenim un servidor sense l'Apache configurat, amb el Handler que hem creat podem llençar una notificació i reiniciar el nostre servei un sol cop.
 
-43.png
+![alt text](../img/43.png "43")
 
 <a name="inventaris"></a>  
 ## 4. Inventaris
@@ -533,11 +533,11 @@ La més fàcil és ficar les nostres màquines nodes al **inventari que Ansible 
 
 Com podem veure dintre del fitxer podem afegir de diverses formes els nostres hosts, partint des de un nom de domini i/o ip, ficar-los dintre d'un grup, aquest és delimiten amb un **header** per crear grups.
 
-11.png
+![alt text](../img/11.png "11")
 
 Aquest fitxer `hosts` té un format semblant al .ini i els comentaris és fam amb l'almohadilla "#", per posar els nostres dos nodes dintre del nostre inventari els ficarem de la següent forma:
 
-12.png
+![alt text](../img/12.png "12")
 
 Aquests headers o capçaleres són el nom dels nostres grups de servidors, els quals utilitzarem per separar, classificar i ordenar els diferents servidors dintre d'Ansible per d'aquesta manera poder utilitzar els més convenients segons les nostres necessitats.
 
@@ -594,7 +594,7 @@ Com hem vist abans, les variables és podem assignar en format **clau=valor** pe
 
 Per posar un cas pràctic en el següent diagrama tenim una estructura d'un cas real amb Ansible, on tenim un servidor de logs, de BBDD, web y servidors corrents que formen part en una empresa però que se situen en diferents llocs del món tots aquests es configuren de la mateixa manera.
 
-grupservidors.png
+![alt text](../img/grupservidors.png "grupservidors")
 
 En el nostre inventari deurien de tenir diferents entrades per controlar el mapa de xarxa anterior.
 
@@ -644,7 +644,7 @@ __Grups per defecte__
 
 En l'inventari per defecte existeixen dos grups: `all` que conté tots els hosts i `ungrouped` el qual agrupa tots els hosts que no tenen associat cap grup.
 
-grupsperdefecte.png
+![alt text](../img/grupsperdefecte.png "grupsperdefecte")
 
 <a name="organitzaciovars"></a>  
 ### 4.3 Organització de les variables
@@ -653,7 +653,7 @@ Encara que les variables es poguin posar dintre del fitxer `/etc/ansible/hosts` 
 
 Per exemple, el meu sistema sistema de fitxers es el següent:
 
-tree.png
+![alt text](../img/tree.png "tree")
 
 * La carpeta `group_vars` ens serveix per posar una sèrie de servidors amb variables en comú d'aquesta manera tindran el mateix lloc d'entorn i configuració.
   * Podem observar el fitxer `all` on podem crear variables per tots els servidors.
