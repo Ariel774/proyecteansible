@@ -147,17 +147,129 @@ Per instal·lar el meu servidor HAProxy he recreat la següent estructura en el 
             └── main.yml
 ```
 
-Fitxer d'instal·lació del HAProxy `roles/haproxy/tasks/main.yml`
+* Fitxer d'instal·lació del HAProxy `roles/haproxy/tasks/main.yml`
 
 ```
 ---
 - name: Ensure HAProxy is installed
   apt: name=haproxy  state=installed
+
+- name: Ensure HAProxy is present
+  lineinfile:
+    dest: /etc/default/haproxy
+    regexp: "^ENABLED.+$"
+    line: "ENABLED=1"
+    state: present
+
+- name: Copy configuration file HAProxy
+  template:
+    src: haproxy.cfg.j2
+    dest: /etc/haproxy/haproxy.cfg
+    mode: 0644
+    validate: haproxy -f %s -c -q #Asegurar que la configuració es valida.
+  notify: restart haproxy
+
+- name: Ensure HAProxy is enabled and started on boot.
+  service: name=haproxy state=started enabled=yes
 ...
 ```
 
-loadbalancer1.png
-  
+* Fitxer d'instal·lació de les variables de HAProxy dintre de `roles/haproxy/templates/haproxy.cfg.j2`. Aquest fitxer .j2 (Ninja 2) ems servirà per afegir variables per poder configurar la nostra plantilla de HAProxy.
+
+```
+global
+  log /dev/log  local0
+  log /dev/log  local1 notice
+  stats socket {{ haproxy_socket }} level admin
+  chroot {{ haproxy_chroot }}
+  user {{ haproxy_user }}
+  group {{ haproxy_group }}
+  daemon
+
+        # Default SSL material locations
+        ca-base /etc/ssl/certs
+        crt-base /etc/ssl/private
+
+        # Default ciphers to use on SSL-enabled listening sockets.
+        # For more information, see ciphers(1SSL). This list is from:
+        #  https://hynek.me/articles/hardening-your-web-servers-ssl-ciphers/
+        ssl-default-bind-ciphers ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+3DES:DH+3DES:RSA+AESGCM:RSA+AES:RSA+3DES:!aNULL:!MD5:!DSS
+        ssl-default-bind-options no-sslv3
+
+defaults
+        log     global
+        mode    http
+        option  httplog
+        option  dontlognull
+        timeout connect 5000
+        timeout client  50000
+        timeout server  50000
+        errorfile 400 /etc/haproxy/errors/400.http
+        errorfile 403 /etc/haproxy/errors/403.http
+        errorfile 408 /etc/haproxy/errors/408.http
+        errorfile 500 /etc/haproxy/errors/500.http
+        errorfile 502 /etc/haproxy/errors/502.http
+        errorfile 503 /etc/haproxy/errors/503.http
+        errorfile 504 /etc/haproxy/errors/504.http
+
+frontend {{ haproxy_frontend_name }}
+    bind {{ haproxy_frontend_bind_address }}:{{ haproxy_frontend_port }}
+    mode {{ haproxy_frontend_mode }}
+    default_backend {{ haproxy_backend_name }}
+
+backend {{ haproxy_backend_name }}
+    mode {{ haproxy_backend_mode }}
+    stats enable
+    stats uri /haproxy?stats
+    stats realm Strictly\ Private
+    stats auth root:root
+    balance {{ haproxy_backend_balance_method }}
+    balance roundrobin
+    option httpclose
+    option forwardfor
+    {% for backend in haproxy_backend_servers %}
+        server {{ backend.name }} {{ backend.address }} check port 80
+    {% endfor %}
+```
+
+* Fitxer per defecte de les configuracions del HAProxy dintre de `roles/haproxy/defaults/main.yml`.
+
+```
+---
+haproxy_socket: /var/lib/haproxy/stats
+haproxy_chroot: /var/lib/haproxy
+haproxy_user: haproxy
+haproxy_group: haproxy
+
+# Frontend configuració.
+haproxy_frontend_name: 'projecteansible'
+haproxy_frontend_bind_address: '*' # A totes les direccions
+haproxy_frontend_port: 80 #Escoltar per el port 80
+haproxy_frontend_mode: 'http' #Només escoltarà les peticions per HTTP
+
+# Backend configuració.
+haproxy_backend_name: 'projecteansible' 
+haproxy_backend_mode: 'http'
+haproxy_backend_balance_method: 'roundrobin'
+haproxy_backend_httpchk: 'HEAD / HTTP/1.1\r\nHost:localhost'
+
+# List of backend servers.
+# Crearem un diccionari
+haproxy_backend_servers:
+  - name: webserver-one
+    address: 192.168.10.11:80
+  - name: webserver-two
+    address: 192.168.10.12:80
+```
+
+* Fitxer del nostre Handler
+
+```
+---
+- name: restart haproxy
+  service: name=haproxy state=restarted
+...
+```
 
 
 
