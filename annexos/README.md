@@ -125,6 +125,7 @@ Per exemple en les següents captures podem veure les IPs del nostre servidor, l
 
 ![alt text](../img/21.png "21")
 
+<a name="loadbalancer"></a>
 ## Instalació del servidor HAProxy
 
 Per instal·lar el meu servidor HAProxy he recreat la següent estructura en el meu directori de Ansible.
@@ -146,7 +147,6 @@ Per instal·lar el meu servidor HAProxy he recreat la següent estructura en el 
             └── main.yml
 ```
 
-<a name="loadbalancer"></a>
 Fitxer d'instal·lació del HAProxy `roles/haproxy/tasks/main.yml`
 
 ```
