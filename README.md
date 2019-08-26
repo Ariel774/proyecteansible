@@ -4,7 +4,7 @@
 El projecte ha sigut fet y realitzat per mi Ariel Orley Zambrano amb l'autorització dels professors del IES Sa Palomera l'any 2019.
 
 ## Estructura del projecte
-Aquest projecte es basa en la recerca, estructuració i pràctica sobre el funcionamente del software Ansible.
+Aquest projecte es basa en la recerca, estructuració i pràctica sobre el funcionament del software Ansible.
 
 
 1. [Introducció](https://github.com/Ariel774/proyecteansible/tree/master/Introduccio)
