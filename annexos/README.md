@@ -60,6 +60,10 @@ Primer de tot autoritzarem l’autorització per ssh del usuari root per els nos
 
 ![alt text](../img/7.png "7")
 
+Per últim reiniciem el servei i amb això ja ens podriem logear amb l'usuari root.
+
+`$ sudo service ssh restart`
+
 Un cop habilitat el SSH per root a els nostres nodes, tenim que activar i modificar la contrasenya dels nostres hosts que penjaram del servidor principal.
 
 ![alt text](../img/13.png "13")
@@ -74,11 +78,11 @@ Per tal de poder obtenir les mateixes credencials de root en tots els nodes util
 
 Ara afegirem la contrasenya root dels nostres nodes dintre del nostre host-controlador Ansible:
 
-`$vagrant@cotroler: ssh-copy-id root@192.168.10.101`
+`$vagrant@cotroler: ssh-copy-id root@192.168.10.1` #Ip del sevidor de càrrega (Loadbalancer)
 
 També cal tenir present que no sempre realitzarem tasques com a root de forma que també copiarem la contrasenya del usuari, en aquest cas serà el de Vagrant.
 
-`$vagrant@cotroler: ssh-copy-id vagrant@192.168.10.101` << Aquesta comanda s'ha d'emprà a els dos nodes per evitar problemes de connexió  amb les comandes de Ansible.
+`$vagrant@cotroler: ssh-copy-id vagrant@192.168.10.1` << Aquesta comanda s'ha d'emprà a tots els nodes per evitar problemes de connexió  amb les comandes de Ansible.
 
 <a name="comandasbasicas"></a>
 ## Primeres comandes bàsiques de Ansible (Comandes AD-HOC)
