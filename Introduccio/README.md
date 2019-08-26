@@ -17,7 +17,7 @@
   4.1 [Hosts i grups](#hostsigrups)<br>
   4.2 [Hosts i variables](#hostsivars)<br>
   4.3 [Organización de variables](#organitzaciovars)<br>
-5. [Organització amb Ansibles](#organitzacio)<br>
+5. [Organització amb Ansible](#organitzacio)<br>
   5.1 [Includes](#includes)<br>
   5.2 [Roles](#roles)<br>
 
