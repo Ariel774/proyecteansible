@@ -137,14 +137,20 @@ Per instal·lar el meu servidor HAProxy he recreat la següent estructura en el 
 │   └── loadbalancers.yml
 ├── hosts
 ├── hosts_vars
-│   └── loadbalancer.yml 
+│   └── loadbalancer.yml
 ├── loadbalancers.yml
 ├── logs
 │   └── ansible.log
 └── roles
     └── haproxy
-        └── tasks
-            └── main.yml
+        ├── defaults
+        │   └── main.yml
+        ├── handlers
+        │   └── main.yml
+        ├── tasks
+        │   └── main.yml
+        └── templates
+            └── haproxy.cfg.j2
 ```
 
 * Fitxer d'instal·lació del HAProxy `roles/haproxy/tasks/main.yml`
