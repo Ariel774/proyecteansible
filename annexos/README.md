@@ -80,11 +80,11 @@ Per tal de poder obtenir les mateixes credencials de root en tots els nodes util
 
 Ara afegirem la contrasenya root dels nostres nodes dintre del nostre host-controlador Ansible:
 
-`$vagrant@cotroler: ssh-copy-id root@192.168.10.1` #Ip del sevidor de càrrega (Loadbalancer)
+`$vagrant@cotroler: ssh-copy-id root@192.168.10.101` #Ip del sevidor de càrrega (Loadbalancer)
 
 També cal tenir present que no sempre realitzarem tasques com a root de forma que també copiarem la contrasenya del usuari, en aquest cas serà el de Vagrant.
 
-`$vagrant@cotroler: ssh-copy-id vagrant@192.168.10.1` << Aquesta comanda s'ha d'emprà a tots els nodes per evitar problemes de connexió  amb les comandes de Ansible.
+`$vagrant@cotroler: ssh-copy-id vagrant@192.168.10.101` << Aquesta comanda s'ha d'emprà a tots els nodes per evitar problemes de connexió  amb les comandes de Ansible.
 
 <a name="comandasbasicas"></a>
 ## Primeres comandes bàsiques de Ansible (Comandes AD-HOC)
@@ -94,7 +94,7 @@ Ansible té la gran facilitat de deixar de banda les tasques antigues con per ex
 Abans de fer qualsevol tasca relacionada amb Ansible tenim que comprovar que els nostres nodes **es troben sincronitzats per data i hora** a més **comprovarem que tenim els recursos suficients per executar una aplicació.**, això es coneix con comandes *AD-HOC*.
 
 * Comprovació del hostname de tots els nodes de forma paralela amb Ansible:
-  * `$ansible all -a "hostname"` --> Aquesta comanda té com a funció dir-nos els hostname de totes les màquines que es troven controlades per Ansible, aquesta comanda equival a `$ansible 192.168.10.1,192.168.10.10,192.168.10.11,192.168.10.12 -a "hostname"`.
+  * `$ansible all -a "hostname"` --> Aquesta comanda té com a funció dir-nos els hostname de totes les màquines que es troven controlades per Ansible, aquesta comanda equival a `$ansible 192.168.10.101,192.168.10.10,192.168.10.11,192.168.10.12 -a "hostname"`.
  
  ####CAMBIAAAAAAAAAAAAAR
   ![alt text](../img/15.png "15")
