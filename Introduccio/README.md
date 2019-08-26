@@ -444,15 +444,18 @@ Per realitzar una tasca abans de fer la principal farem ús del paràmetre `pre_
   remote_user: root
   pre_tasks:
     - name: Pre tasca
-      command: "Actualitzant tots els paquets"
+      command: echo "Actualitzant tots els paquets"
   tasks:
     - name: Upgrade server
-      apt: name="*" state=latest
+      apt: name=aptitude state=latest
   post_tasks:
     - name: Post tasca
       command: echo "servidor actualitzat"
 ...
 ```
+
+preandpost.png
+
 __Opcions d'un Playbook__
 
 Ansible de forma predeterminada té moltes opcions que es troben assignades sense que nosaltres ho sapiguem com pot ser la ruta del nostre inventari o el _verbose_ que ens mostrarà per sortida totes les comandes emprades durant l'execució, tot això es pot modificar gràcies a les opcions següents:
@@ -809,6 +812,29 @@ Si el directori no existeix, Ansible l'ignora.
 __Rols - Variables per defecte__
 
 Com ja hem vist abans les variables per defecte es posem a la ruta `/role/nomdelanostracarpeta/default/main.yml`, aquestes variables tenem la mínima priorirtat entre totes les variables disponibles i les pot sobreescriure qualsevol altre variable d'un rol o del inventari.
+
+__Rols - Dependencies__
+
+Les dependencies ens permeten executar rols dintre de rols, aquest s'enmagatzement en el directori `meta/main.yml`
+
+```
+---
+dependencies:
+  
+  - role: common
+    vars:
+      some_parameter: 3
+  - role: apache
+    vars:
+      apache_port: 80
+  - role: postgres
+    vars:
+      dbname: blarg
+      other_parameter: 12
+...
+```
+
+Aquestes dependencies s'executaran **ABANS** dels rols, per exemple si volem executar el rol d'instal·lar Laravel, deurien de tenir el paquet de PHP instal·lat al nostre servidor.
 
 ## 6. Ansible portat a la pràctica. (DESENVOLUPAMENT)
 
