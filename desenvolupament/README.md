@@ -63,4 +63,15 @@ Per fer-ho he tingut que crear un rol anomenat `haproxy` on he posat el següent
     - role: haproxy
 ...
 ```
+
+loadbalancer1.png
+
 [Més informació sobre l'instal·lació d'HAProxy.](../annexos/#loadbalancer)
+
+Un cop tenim el HAProxy configurat només tenim que anar a la següent url per veure el panell de administració.
+
+http://192.168.10.101/haproxy?stats
+
+loadbalancer2.png
+
+Com podem veure els nostres dos serveis web es troben _DOWN_ això es perquè encara no tenim cap servidor web configurat.
