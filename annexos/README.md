@@ -66,11 +66,13 @@ Per últim reiniciem el servei i amb això ja ens podriem logear amb l'usuari ro
 
 Un cop habilitat el SSH per root a els nostres nodes, tenim que activar i modificar la contrasenya dels nostres hosts que penjaram del servidor principal.
 
-######CAMBIAAAAAAAAAAAAAAAAAAAAR
-
 ![alt text](../img/13.png "13")
 
+![alt text](../img/13a.png "13a")
+
 ![alt text](../img/14.png "14")
+
+![alt text](../img/14a.png "14a")
 
 Per tal de poder obtenir les mateixes credencials de root en tots els nodes utilitzarem la següent comanda en el **controlador** que ens crearà una nova clau:
 
