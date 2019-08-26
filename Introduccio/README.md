@@ -20,12 +20,6 @@
 5. [Organització amb Ansibles](#organitzacio)<br>
   5.1 [Includes](#includes)<br>
   5.2 [Roles](#roles)<br>
-6. [Ansible portat a la pràctica]<br>
-  6.1 [Començant el projecte]<br>
-  6.2 [Creació de rols i configuració de màquina]<br>
-  6.3 [Webserver i configuració Apache]<br>
-  6.4 [Instalació i configuració de un WordPress]<br>
-  6.5 [Instalació i configuració de MySQL]<br>
 
 <a name="origen"></a>  
 ## 1. Origen d’ Ansible
@@ -836,8 +830,3 @@ dependencies:
 
 Aquestes dependencies s'executaran **ABANS** dels rols, per exemple si volem executar el rol d'instal·lar Laravel, deurien de tenir el paquet de PHP instal·lat al nostre servidor.
 
-## 6. Ansible portat a la pràctica. (DESENVOLUPAMENT)
-
-L'estructura que utilitzarem per fer totes les nostres proves en Ansible serà la seguent:
-
-8.png
