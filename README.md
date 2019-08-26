@@ -1,7 +1,7 @@
 ![alt text](img/introduccion.png "IntroducciónAnsible")
 
 ## Projecte del CGS d'ASIX
-El projecte ha sigut fet y realitzat per mi Ariel Orley Zambrano amb l'autorització dels professors del IES Sa Palomera l'any 2019.
+El projecte ha sigut fet i realitzat per Ariel Orley Zambrano amb l'autorització dels professors del IES Sa Palomera l'any 2019.
 
 ## Estructura del projecte
 Aquest projecte es basa en la recerca, estructuració i pràctica sobre el funcionament del software Ansible.
