@@ -33,10 +33,7 @@ Per fer-ho primer he hagut de crear en una zona de proves amb 1 controlador, 1 s
 
 Un cop hem pogut comprovar que les màquines han sigut creades segons els nostres fitxers *Vagrantfile* he tingut que [habilitar el SSH i l'autorització del usuari root](/annexos/#ssh-passwd) de forma remota per poder connectarnos amb Ansible amb el mateix ID a tots els nostres servidors.
 
-
 Havent acabat la configuració prèvia de nostres maquines podem procedir a entrar dins del nostre entorn Ansible, no sense abans comprovant la correcta sincronització de data i hora i la disponibilitat dels nostres recursos, podem trobar més informació sobre les comandes bàsiques [aquí](/annexos/#comandasbasicas).
-
-#####CAMBIAR
 
 ![alt text](../img/19.png "19")
 
