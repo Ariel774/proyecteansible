@@ -1,4 +1,4 @@
-# Instal·lació de Ansible per Ubuntu:
+# Annexos
 
 L'estructura que utilitzarem per fer les nostres amb Ansible serà la següent:
 
