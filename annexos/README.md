@@ -26,6 +26,8 @@ En el meu cas per a poder gestionar de forma molt més senzilla i ràpida totes 
 
 Per començar, en aquest apartat podem veure el fitxer empleat per la configuració de la nostra maquina principal Ansible, podem observar que utilitzen una versió de Ubuntu 16.04, amb una xarxa privada amb l’IP 192.168.10.100, una carpeta compartida Shared que s’ubicarà en l’arrel de el nostre Vagrantfile, memòria ram i CPU. 
 
+__Fitxer d'instalació del servidor amb Ansible__
+
 ![alt text](../img/4.png "4")
 
 Si observen el fitxer veurem que hi ha una configuració amb el path “config.sh” això ho utilitzarem per instal·lar el Ansible de forma automàtica a la nostra màquina virtual.
@@ -40,6 +42,14 @@ I iniciem el nostre servidor controlador que serà l’encarregat de gestionar e
 Ara per veure si la nostra màquina s’ha configurat correctament fem un SSH cap a l’IP del nostre servidor.
 
 ![alt text](../img/3.png "3")
+
+__Fitxer d'instalació dels servidors nodes__
+
+En aquest fitxer veurem la configuració del Loadbalancer, els dos servidors web i el de BBDD.
+
+![alt text](../img/nodes.png "nodes")
+
+![alt text](../img/nodes2.png "nodes2")
 
 <a name="ssh-passwd"></a>
 ## Habilitació del SSH i contrasenya per la correcta gestió de Ansible
