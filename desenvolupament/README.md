@@ -55,6 +55,8 @@ __Instal·lació del nostre balancejador de càrrega__
 
 Per fer-ho he tingut que crear un rol anomenat `haproxy` on he posat el següent codi per instal·lar el HAProxy en el nostre servidor.
 
+- Fitxer de configuració:
+
 ```
 ---
 - name: Servidor de càrrega (LoadBalancer)
@@ -75,3 +77,32 @@ http://192.168.10.101/haproxy?stats
 loadbalancer2.png
 
 Com podem veure els nostres dos serveis web es troben _DOWN_ això es perquè encara no tenim cap servidor web configurat.
+
+__Webservers i configuració de Apache__
+
+Semblant a l'instal·lació del servidor de càrrega he creat un rol amb el nom de `apache` per poder configurar i administrar els nostres dos servidors de Apache.
+
+- Fitxer de administració i instal·lació del rol Apache:
+
+```
+---
+- name: Servidors web amb Apache
+  hosts: webservers
+  roles:
+    - role: apache
+...
+```
+
+webservers1.png
+
+Comproven que càrrega els nostres llocs amb la pàgina per defecte de Apache:
+
+webservers2.png
+
+webservers3.png
+
+[Més informació sobre la configuració i instal·lació del nostres servidors Apache.](../annexos/#webserversapache)
+
+__Instal·lació i configuració de WordPress__
+
+__Instal·lació i configuració de MySQL__
