@@ -101,6 +101,10 @@ webservers2.png
 
 webservers3.png
 
+Instal·lació de totes les tasques per poder configurar el nostre Apache:
+
+webservers4.png
+
 [Més informació sobre la configuració i instal·lació del nostres servidors Apache.](../annexos/#webserversapache)
 
 __Instal·lació i configuració de WordPress__
