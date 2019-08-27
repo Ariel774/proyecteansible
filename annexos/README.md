@@ -153,7 +153,7 @@ Per instal·lar el meu servidor HAProxy he recreat la següent estructura en el 
             └── haproxy.cfg.j2
 ```
 
-* Fitxer d'instal·lació del HAProxy `roles/haproxy/tasks/main.yml`
+* Fitxer d'instal·lació de les **tasques** per el serveï de HAProxy `roles/haproxy/tasks/main.yml`
 
 ```
 ---
@@ -180,7 +180,7 @@ Per instal·lar el meu servidor HAProxy he recreat la següent estructura en el 
 ...
 ```
 
-* Fitxer d'instal·lació de les variables de HAProxy dintre de `roles/haproxy/templates/haproxy.cfg.j2`. Aquest fitxer .j2 (Ninja 2) ems servirà per afegir variables per poder configurar la nostra plantilla de HAProxy.
+* Fitxer d'instal·lació de **les variables** de HAProxy dintre de `roles/haproxy/templates/haproxy.cfg.j2`. Aquest fitxer .j2 (Ninja 2) ems servirà per afegir variables per poder configurar la nostra plantilla de HAProxy.
 
 ```
 global
@@ -303,12 +303,49 @@ Estructura a nivell de fitxers del rol `Apache`.
         ├── tasks
         │   └── main.yml
         └── templates
-     
+            └── vhosts.conf.j2
+```
 
+* Fitxer de les nostres **tasques** `roles/haproxy/tasks/main.yml`
 
+```
+---
+- name: Ensure Apache is installed
+  apt: name={{ item }} state=installed
+  with_items: "{{ apache_packages }}"
 
+- name: Enable Apache modules #Modulos
+  file:
+    src: "{{ apache_server_root }}/mods-available/{{ item }}"
+    dest: "{{ apache_server_root }}/mods-enabled/{{ item }}"
+    state: link
+  with_items: "{{ apache_mods_enabled }}"
+  notify: restart apache2
 
+- name: Add virtual hosts configuration #Ficheros
+  template:
+    src: "{{ apache_vhosts_template }}"
+    dest: "{{ apache_conf_path }}/sites-available/{{ apache_vhosts_filename }}"
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart apache2 #Handler
 
+- name: Add enabled virtuals hosts #Hosts virtuals
+  file:
+    src: "{{ apache_conf_path }}/sites-available/{{ apache_vhosts_filename }}"
+    dest: "{{ apache_conf_path }}/sites-enabled/{{ apache_vhosts_filename }}"
+    state: link
+  notify: restart apache2
 
+- name: Remove default virtual hosts in sites-enabled
+  file:
+    path: "{{ apache_conf_path }}/sites-enabled/000-default.conf"
+    state: absent
+  notify: restart apache2
+...
+```
+
+* Fitxer de configuració de la nostra plantilla (Template) de Apache
 
 
