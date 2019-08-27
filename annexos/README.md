@@ -277,6 +277,33 @@ haproxy_backend_servers:
 ...
 ```
 
+<a name="webserversapache"></a>
+## Instal·lació i configuració dels servidors web amb Apache.
+
+Estructura a nivell de fitxers del rol `Apache`.
+
+```
+├── ansible.cfg
+├── group_vars
+│   ├── all.yml
+│   └── webservers.yml
+├── hosts
+├── hosts_vars
+│   ├── webserver-one.yml
+│   └── webserver-two.yml
+├── webservers.yml
+├── logs
+│   └── ansible.log
+└── roles
+    └── haproxy
+        ├── defaults
+        │   └── main.yml
+        ├── handlers
+        │   └── main.yml
+        ├── tasks
+        │   └── main.yml
+        └── templates
+     
 
 
 
