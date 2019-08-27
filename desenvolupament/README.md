@@ -55,7 +55,7 @@ __Instal·lació del nostre balancejador de càrrega__
 
 Per fer-ho he tingut que crear un rol anomenat `haproxy` on he posat el següent codi per instal·lar el HAProxy en el nostre servidor.
 
-- Fitxer de configuració:
+- Fitxer de configuració `loadbalancers.yml`:
 
 ```
 ---
@@ -82,7 +82,7 @@ __Webservers i configuració de Apache__
 
 Semblant a l'instal·lació del servidor de càrrega he creat un rol amb el nom de `apache` per poder configurar i administrar els nostres dos servidors de Apache.
 
-- Fitxer de administració i instal·lació del rol Apache:
+- Fitxer de administració i instal·lació del rol Apache i PHP `webservers.yml`:
 
 ```
 ---
@@ -90,6 +90,7 @@ Semblant a l'instal·lació del servidor de càrrega he creat un rol amb el nom 
   hosts: webservers
   roles:
     - role: apache
+    - role: php
 ...
 ```
 
