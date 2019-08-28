@@ -295,7 +295,7 @@ Estructura a nivell de fitxers del rol `Apache`.
 ├── logs
 │   └── ansible.log
 └── roles
-    └── haproxy
+    └── apache
         ├── defaults
         │   └── main.yml
         ├── handlers
@@ -346,6 +346,115 @@ Estructura a nivell de fitxers del rol `Apache`.
 ...
 ```
 
-* Fitxer de configuració de la nostra plantilla (Template) de Apache
+* Fitxer de configuració de les nostres variables `etc/ansible/roles/apache/defaults/main.yml`
+
+```
+---
+
+# Paquets a instal·lar per defecte diccionari
+
+apache_packages:
+  - apache2
+  - apache2-utils
+
+apache_mods_enabled:
+  - rewrite.load
+
+#Configuració Apache amb Ubuntu 16.04
+
+apache_daemon: apache2
+apache_daemon_path: /usr/sbin/
+apache_server_root: /etc/apache2
+apache_conf_path: /etc/apache2
+
+#Configuracións
+apache_vhosts_filename: "vhosts.conf"
+apache_vhosts_template: "vhosts.conf.j2"
+
+#Ips que escoltará
+apache_listen_ip: "*"
+apache_listen_port: 80
+
+apache_global_vhost_settings:
+  DirectoryIndex index.php index.html home.html
+
+apache_vhosts:
+ - servername: "azambrano.com"
+   documentroot: "{{ webserver_root }}" #Variable que será compartida per els Rols de Apache i PHP
+
+apache_allow_override: "All"
+apache_options: "-Indexes +FollowSymlinks"
+
+...
+```
+
+* Fitxer de configuració de la nostra plantilla (Template) de Apache `etc/ansible/roles/apache/templates/vhosts.conf.j2`
+
+```
+{{ apache_global_vhost_settings }}
+
+{% for vhost in apache_vhosts %}
+<VirtualHost {{ apache_listen_ip }}:{{ apache_listen_port }}>
+  ServerName {{ vhost.servername }}
+{% if vhost.serveralias is defined %}
+  ServerAlias {{ vhost.serveralias }}
+{% endif %}
+{% if vhost.documentroot is defined %}
+  DocumentRoot "{{ vhost.documentroot }}"
+{% endif %}
+
+{% if vhost.serveradmin is defined %}
+  ServerAdmin {{ vhost.serveradmin }}
+{% endif %}
+{% if vhost.documentroot is defined %}
+  <Directory "{{ vhost.documentroot }}">
+    AllowOverride {{ vhost.allow_override | default(apache_allow_override) }}
+    Options {{ vhost.options | default(apache_options) }}
+    Require all granted
+{% endif %}
+  </Directory>
+</VirtualHost>
+
+{% endfor %}
+
+```
+
+* Fitxer Handler de Apache `etc/ansible/roles/apache/handlers/main.yml`
+```
+---
+- name: restart apache2
+  service:
+    name: apache2
+    state: restarted
+...
+```
+
+<a name="php"></a>
+## Instal·lació i configuració del rol PHP.
+
+* Fitxer de les **tasques** de PHP `etc/ansible/roles/php/tasks/main.yml`
+
+```
+---
+
+- name: Install PHP packages
+  apt: name={{ item }} state=installed
+  with_items: "{{ php_packages }}"
+  notify: restart apache2
+...
+```
+
+* fitxer de les **variables per defecte** de PHP `etc/ansible/roles/php/defaults/main.yml`
+
+```
+---
+
+php_packages:
+  - php7.0
+  - libapache2-mod-php7.0
+  - php7.0-mysql
+  - php7.0-curl
+...
+```
 
 
