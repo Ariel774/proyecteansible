@@ -180,7 +180,7 @@ Per instal·lar el meu servidor HAProxy he recreat la següent estructura en el 
 ...
 ```
 
-* Fitxer d'instal·lació de **les variables** de HAProxy dintre de `roles/haproxy/templates/haproxy.cfg.j2`. Aquest fitxer .j2 (Ninja 2) ems servirà per afegir variables per poder configurar la nostra plantilla de HAProxy.
+* Fitxer d'instal·lació de **les variables** de HAProxy dintre de `roles/haproxy/templates/haproxy.cfg.j2`. Aquest fitxer .j2 (Jinja 2) ems servirà per afegir variables per poder configurar la nostra plantilla de HAProxy.
 
 ```
 global
@@ -456,5 +456,11 @@ php_packages:
   - php7.0-curl
 ...
 ```
+
+## Instal·lació i configuració del MySQL
+
+* Fitxer de les variables per defecte de MySQL `etc/ansible/roles/mysql/defaults/main.yml`
+
+
 
 
