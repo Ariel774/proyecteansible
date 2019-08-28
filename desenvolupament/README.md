@@ -108,6 +108,12 @@ webservers4.png
 
 [Més informació sobre la configuració i instal·lació del nostres servidors Apache.](../annexos/#webserversapache)
 
+Instal·lació del rol de PHP en el nostre servidor:
+
+php1.png
+
+[Configuració dels fitxers d'instal·lació de PHP.](../annexos/#php)
+
 __Instal·lació i configuració de WordPress__
 
 __Instal·lació i configuració de MySQL__
