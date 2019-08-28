@@ -78,7 +78,7 @@ loadbalancer2.png
 
 Com podem veure els nostres dos serveis web es troben _DOWN_ això es perquè encara no tenim cap servidor web configurat.
 
-__Webservers i configuració de Apache__
+__Webservers i configuració dels servidors web__
 
 Semblant a l'instal·lació del servidor de càrrega he creat un rol amb el nom de `apache` per poder configurar i administrar els nostres dos servidors de Apache.
 
@@ -114,6 +114,28 @@ php1.png
 
 [Configuració dels fitxers d'instal·lació de PHP.](../annexos/#php)
 
+__Instal·lació i configuració de MySQL__
+
+Per crear la nostra infraestructura amb WordPress es necessari tenir una base de dades instal·lada al notre servidor `192.168.10.10`.
+
+* Utilitzarem el següent codi per poder instal·lar el nostre rol de **mysql**:
+
+```
+---
+
+- name: Servidor Base de dades
+  hosts: bdserver
+  roles:
+    -role: mysql
+...
+```
+
+bbdd1.png
+
+[Condifuració de la nostra bbdd.](../annexos/#bbdd)
+
 __Instal·lació i configuració de WordPress__
 
-__Instal·lació i configuració de MySQL__
+
+
+
