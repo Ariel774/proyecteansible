@@ -461,6 +461,10 @@ php_packages:
 
 * Fitxer de les variables per defecte de MySQL `etc/ansible/roles/mysql/defaults/main.yml`
 
+Comproven que fa la correcta connexió amb el software Toad.
+
+
+
 
 
 
