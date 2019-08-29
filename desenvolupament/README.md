@@ -11,9 +11,7 @@
 <a name="objectiu"></a>
 ## 1. Objectiu
 
-Per poder desenvolupar el nostre projecte farem ús de Vagrant per crear el nostre entorn de desenvolupament.
-
-Amb Ansible farem:
+L' objectiu del nostre projecte es poder aprendre sobre aquesta eina d'orquestació anomenada Ansible que es troba molt demandada a causa de la seva potència i la seva facilitat en la gestió i configuració de servidors. Amb aquest software replicarem una estructura web i per fer-ho cal assolir els següents objectius:
 
 - L'implementació d' un servidor de carrega.
 - L'instal·lació de dos servidos web amb PHP i Apache per implementar un WordPress.
@@ -22,6 +20,8 @@ Amb Ansible farem:
 L'arquitectura que volem contruir serà la següent:
 
 ![alt text](../img/8.png "8")
+
+Per poder desenvolupar el nostre projecte farem ús de Vagrant per crear el nostre entorn de desenvolupament.
 
 <a name="vagrant"></a>
 ## 2. Vagrant
