@@ -132,6 +132,8 @@ Per crear la nostra infraestructura amb WordPress es necessari tenir una base de
 
 bbdd1.png
 
+Comprobarem que fem la connexió correcta amb el software Toad.
+
 [Condifuració de la nostra bbdd.](../annexos/#bbdd)
 
 __Instal·lació i configuració de WordPress__
