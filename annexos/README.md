@@ -157,17 +157,17 @@ Per instal·lar el meu servidor HAProxy he recreat la següent estructura en el 
 
 ```
 ---
-- name: Ensure HAProxy is installed
+- name: Asegurar que HAProxy es troba instal·lat
   apt: name=haproxy  state=installed
 
-- name: Ensure HAProxy is present
+- name: Asegurar que HAProxy es troba preent
   lineinfile:
     dest: /etc/default/haproxy
     regexp: "^ENABLED.+$"
     line: "ENABLED=1"
     state: present
 
-- name: Copy configuration file HAProxy
+- name: Copiar configuració HAProxy cap al fitxer de configuració
   template:
     src: haproxy.cfg.j2
     dest: /etc/haproxy/haproxy.cfg
@@ -175,7 +175,7 @@ Per instal·lar el meu servidor HAProxy he recreat la següent estructura en el 
     validate: haproxy -f %s -c -q #Asegurar que la configuració es valida.
   notify: restart haproxy
 
-- name: Ensure HAProxy is enabled and started on boot.
+- name: Asegurar que HAProxy es troba habilitat
   service: name=haproxy state=started enabled=yes
 ...
 ```
@@ -306,15 +306,15 @@ Estructura a nivell de fitxers del rol `Apache`.
             └── vhosts.conf.j2
 ```
 
-* Fitxer de les nostres **tasques** `roles/haproxy/tasks/main.yml`
+* Fitxer de les nostres **tasques** `roles/apache/tasks/main.yml`
 
 ```
 ---
-- name: Ensure Apache is installed
+- name: Asegurar que l'Apache es troba instal·lat
   apt: name={{ item }} state=installed
   with_items: "{{ apache_packages }}"
 
-- name: Enable Apache modules #Modulos
+- name: Habilitar modul #Modulos
   file:
     src: "{{ apache_server_root }}/mods-available/{{ item }}"
     dest: "{{ apache_server_root }}/mods-enabled/{{ item }}"
@@ -456,12 +456,166 @@ php_packages:
   - php7.0-curl
 ...
 ```
-
+<a name="mysql"></a>
 ## Instal·lació i configuració del MySQL
 
 * Fitxer de les variables per defecte de MySQL `etc/ansible/roles/mysql/defaults/main.yml`
 
+```
+---
+
+- name: Instal·lar els paquets MySQL
+  apt: name={{ item }} state=installed update_cache=yes
+  with_items: "{{ mysql_packages }}"
+
+- name: Copiar mysqld.conf cap el servidor bbdd
+  template:
+    src: mysqld.conf.j2
+    dest: "{{ mysql_conf_dir }}/mysql.conf.d/mysqld.cnf"
+  notify: "restart mysql"
+
+- name: Iniciar servei MySQL
+  service: name=mysql state=started enabled=yes
+
+- name: Actualitzar contrasenya root
+  mysql_user:                          #Mòdul de Ansible
+    name: root
+    password: root
+    host: "{{ item }}"
+  with_items:
+    - 127.0.0.1
+    - ::1
+    - localhost
+  when: ansible_hostname == 'localhost'
+
+#Quan no sigui localhost
+- name: Actualitzar contrasenya root quan no sigue localhost
+  mysql_user: name=root password=root host={{ item }}
+  with_items:
+    - "{{ ansible_hostname }}"
+    - 127.0.0.1
+    - ::1
+    - localhost
+  when: ansible_hostname != 'localhost'
+
+- name: Copiar .my.cnf para las credencials root
+  template:
+    src: .my.cnf.j2
+    dest: ~/.my.cnf
+    mode: 0600
+  notify: "restart mysql"
+
+- name: Asegurar-se que no hi han usuarios anonims bbdd
+  mysql_user: name='' host={{ item }} state=absent
+  with_items:
+    - localhost
+    - "{{ ansible_hostname }}"
+
+- name: Crear Base de dades
+  mysql_db: name={{ item.name }} state=present
+  with_items: "{{ mysql_db }}"
+  when: mysql_db|lower() != 'none'
+
+- name: Crear usuarios BBDD
+  mysql_user: name={{ item.name }} password={{ item.password }} priv={{ item.priv }} host=% state=present
+  with_items: "{{ mysql_users }}"
+```
+
+* Fitxer de configuració de les nostres variables per defecte:
+
+```
+#Configuració amb Ubuntu 16.04
+mysql_packages:
+  - mysql-server
+  - python-mysqldb
+  - python-selinux
+
+
+#Directori per defecte MySQL
+mysql_conf_dir: "/etc/mysql"
+
+#Port per defecte
+mysql_port: 3306
+
+#Adreça per defecte per poder accedir als nostres hosts
+mysql_bind_address: "0.0.0.0"
+
+#Variable de usuari root
+mysql_root_pass: root
+
+#Nom de les nostres bbdd
+mysql_db:
+  - name: wpazambrano
+
+#Usuari WordPress
+mysql_users:
+  - name: wpariel
+    password: P@ssw0rd
+    priv: "*.*:ALL"
+
+```
+
+* Fitxer de configuració de la nostra plantilla `mysqld.conf.j2`:
+
+```
+## Fitxer per defecte
+
+[mysqld_safe]
+socket          = /var/run/mysqld/mysqld.sock
+nice            = 0
+
+[mysqld]
+user            = mysql
+pid-file        = /var/run/mysqld/mysqld.pid
+socket          = /var/run/mysqld/mysqld.sock
+port            = {{ mysql_port }}
+basedir         = /usr
+datadir         = /var/lib/mysql
+tmpdir          = /tmp
+lc-messages-dir = /usr/share/mysql
+skip-external-locking
+# adreçes
+bind-address            = {{ mysql_bind_address }}
+
+
+key_buffer_size         = 16M
+max_allowed_packet      = 16M
+thread_stack            = 192K
+thread_cache_size       = 8
+myisam-recover-options  = BACKUP
+query_cache_limit       = 1M
+query_cache_size        = 16M
+
+
+# Path del error log
+log_error = /var/log/mysql/error.log
+max_binlog_size   = 100M
+```
+
+* Fitxer de configuració per les credencials de root `.my.cnf.j2`:
+
+```
+[client]
+user=root
+password={{ mysql_root_pass }}
+```
+
+* Handler per reiniciar el mysql server:
+
+```
+---
+- name: restart mysql
+  service: name=mysql state=restarted
+...
+```
+
 Comproven que fa la correcta connexió amb el software Toad.
+
+bbdd3.png
+
+Ens assegurem de que la BBDD estigui creada-
+
+bbdd4.png
 
 
 
