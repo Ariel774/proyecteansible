@@ -45,7 +45,7 @@ Aquesta comprovació de data i hora la fem perquè encara que algunes aplicacion
 
 __Hosts del proyecte__
 
-Dintre del fitxer `hosts` que serà el nostre [inventari](../introduccio/hostsigrups) per defecte he afegit els meus servidors perquè Ansible els pugui controlar, juntament amb les serves variables de usuari, hosts, i grups.
+Dintre del fitxer `hosts` que serà el nostre [inventari](/Introduccio/#hostsigrups) per defecte he afegit els meus servidors perquè Ansible els pugui controlar, juntament amb les serves variables de usuari, hosts, i grups.
 
 Fitxer `/etc/ansible/hosts`
 
