@@ -45,7 +45,7 @@ Aquesta comprovació de data i hora la fem perquè encara que algunes aplicacion
 
 __Hosts del proyecte__
 
-Dintre del fitxer `hosts` que serà el nostre [inventari](/Introduccio/#hostsigrups) per defecte he afegit els meus servidors perquè Ansible els pugui controlar, juntament amb les serves variables de usuari, hosts, i grups.
+Dintre del fitxer `hosts` que serà el nostre [inventari](/Introduccio/#hostsigrups) per defecte he afegit els meus servidors perquè Ansible els pugui controlar, juntament amb les seves variables de usuari, hosts, i grups.
 
 Fitxer `/etc/ansible/hosts`
 
@@ -147,6 +147,12 @@ bbdd2.png
 <a name="wordpress"></a>
 ## 6. Instal·lació i configuració de WordPress
 
+Per instal·lar el WordPress vaig tenir que descarregar-ho del [repositori oficial](https://es.wordpress.org/download/) de WordPress i implementar-ho en els dos servidors web amb Apache que ja tenim. 
+
+- Fitxer de configuració de les tasques a fer per Ansible per WordPress.
+
+```
+```
 
 
 
