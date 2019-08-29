@@ -132,9 +132,11 @@ Per crear la nostra infraestructura amb WordPress es necessari tenir una base de
 
 bbdd1.png
 
-Comprobarem que fem la connexió correcta amb el software Toad.
+Un cop hem comprobat que la base de dades s'ha creat correctament, procedirem a actualitzar el fitxer mysqld.conf, juntament amb el my.cnf, actualitzar la contrasenya `root` per la nostra BBDD, crear la nova base de dades per el WordPress i l'usuari per defecte.
 
-[Condifuració de la nostra bbdd.](../annexos/#bbdd)
+bbdd2.png
+
+[Condifuració de les tasques del Playbook per la BBDD](../annexos/#mysql)
 
 __Instal·lació i configuració de WordPress__
 
