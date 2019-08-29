@@ -1,11 +1,12 @@
 # Desenvolupament del projecte
 
 1. [Objectiu](#objectiu)<br>
-2. [Vagrant]<br>
-3. [Creació de rols i configuració de màquina]<br>
-4. [Webserver i configuració Apache]<br>
-5. [Instalació i configuració de un WordPress]<br>
-6. [Instalació i configuració de MySQL]<br>
+2. [Vagrant](#vagrant)<br>
+3. [Creació de rols i configuració de màquina](#conf)<br>
+4. [Webserver i configuració Apache](#apachephp)<br>
+5. [Instalació i configuració de MySQL](#confmysql)<br>
+6. [Instalació i configuració de un WordPress](#wordpress)<br>
+
 
 <a name="objectiu"></a>
 ## 1. Objectiu
@@ -22,7 +23,8 @@ L'arquitectura que volem contruir serà la següent:
 
 ![alt text](../img/8.png "8")
 
-### 2. Vagrant
+<a name="vagrant"></a>
+## 2. Vagrant
 
 Per començar a desenvolupar aquest projecte orientat a la pràctica he utilitzat un recurs molt innovador per crear, modificar i gestionar les meves màquines virtuals a partir de Virtual-Box, això ho he fet amb [Vagrant](https://www.conasa.es/blog/vagrant-la-herramienta-para-crear-entornos-de-desarrollo-reproducibles/).
 
@@ -30,7 +32,8 @@ Per començar a desenvolupar aquest projecte orientat a la pràctica he utilitza
 
 Per fer-ho primer he hagut de crear en una zona de proves amb 1 controlador, 1 servidor de carrega, 2 nodes webserver i 1 per fer l'implementació de la BBDD a partir del [fitxer de configuració](/annexos/#controllernode).
 
-### 3.Creació de rols i configuració de màquina
+<a name="conf"></a>
+## 3. Creació de rols i configuració de màquina
 
 Un cop hem pogut comprovar que les màquines han sigut creades segons els nostres fitxers *Vagrantfile* he tingut que [habilitar el SSH i l'autorització del usuari root](/annexos/#ssh-passwd) de forma remota per poder connectarnos amb Ansible amb el mateix ID a tots els nostres servidors.
 
@@ -79,7 +82,8 @@ loadbalancer2.png
 
 Com podem veure els nostres dos serveis web es troben _DOWN_ això es perquè encara no tenim cap servidor web configurat.
 
-__Webservers i configuració dels servidors web__
+<a name="apachephp"></a>
+## 4. PHP i configuració dels servidors web__
 
 Semblant a l'instal·lació del servidor de càrrega he creat un rol amb el nom de `apache` per poder configurar i administrar els nostres dos servidors de Apache.
 
@@ -115,7 +119,8 @@ php1.png
 
 [Configuració dels fitxers d'instal·lació de PHP.](../annexos/#php)
 
-__Instal·lació i configuració de MySQL__
+<a name="confmysql"></a>
+## 5. Instal·lació i configuració de MySQL__
 
 Per crear la nostra infraestructura amb WordPress es necessari tenir una base de dades instal·lada al notre servidor `192.168.10.10`.
 
@@ -139,7 +144,8 @@ bbdd2.png
 
 [Condifuració de les tasques del Playbook per la BBDD](../annexos/#mysql)
 
-__Instal·lació i configuració de WordPress__
+<a name="wordpress"></a>
+## 6. Instal·lació i configuració de WordPress
 
 
 
