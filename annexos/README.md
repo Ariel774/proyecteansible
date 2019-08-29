@@ -613,9 +613,12 @@ Comproven que fa la correcta connexió amb el software Toad.
 
 bbdd3.png
 
-Ens assegurem de que la BBDD estigui creada-
+Ens assegurem de que la BBDD estigui creada
 
 bbdd4.png
+
+<a name="wordpress"></a>
+## Instal·lació i configuració del WordPress
 
 
 
