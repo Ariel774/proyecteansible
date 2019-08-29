@@ -1,12 +1,13 @@
 # Desenvolupament del projecte
 
-1. [Objectiu]<br>
+1. [Objectiu](#objectiu)<br>
 2. [Vagrant]<br>
 3. [Creació de rols i configuració de màquina]<br>
 4. [Webserver i configuració Apache]<br>
 5. [Instalació i configuració de un WordPress]<br>
 6. [Instalació i configuració de MySQL]<br>
 
+<a name="objectiu"></a>
 ## 1. Objectiu
 
 Per poder desenvolupar el nostre projecte farem ús de Vagrant per crear el nostre entorn de desenvolupament.
