@@ -30,7 +30,7 @@ Per començar a desenvolupar aquest projecte orientat a la pràctica he utilitza
 
 ![alt text](../img/Vagrant.png "Vagrant")
 
-Per fer-ho primer he hagut de crear en una zona de proves amb 1 controlador, 1 servidor de carrega, 2 nodes webserver i 1 per fer l'implementació de la BBDD a partir del [fitxer de configuració](/annexos/#controllernode).
+Per fer-ho primerament he hagut de crear en una zona de proves amb 1 controlador, 1 servidor de carrega, 2 nodes webserver i 1 per fer l'implementació de la BBDD a partir del [fitxer de configuració](/annexos/#controllernode).
 
 <a name="conf"></a>
 ## 3. Creació de rols i configuració de màquina
