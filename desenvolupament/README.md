@@ -158,17 +158,17 @@ Semblant a l'instal·lació del servidor de càrrega he creat un rol amb el nom 
 ...
 ```
 
-![alt text](../img/webserver1.png "webserver1")
+![alt text](../img/webservers1.png "webserver1")
 
 Comproven que càrrega els nostres llocs amb la pàgina per defecte de Apache:
 
-![alt text](../img/webserver2.png "webserver2")
+![alt text](../img/webservers2.png "webserver2")
 
-![alt text](../img/webserver3.png "webserver3")
+![alt text](../img/webservers3.png "webserver3")
 
 Instal·lació de totes les tasques per poder configurar el nostre Apache:
 
-![alt text](../img/webserver4.png "webserver4")
+![alt text](../img/webservers4.png "webserver4")
 
 [Més informació sobre la configuració i instal·lació del nostres servidors Apache.](../annexos/#webserversapache)
 
