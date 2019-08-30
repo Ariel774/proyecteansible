@@ -91,7 +91,7 @@ Com abans hem comentat Ansible és una eina que serveis per instal·lar, configu
 
 - Nodo: Es maneja pel controlador mitjançant una connexió SSH.
 
-![alt text](../img/Arquitectura-Ansible.png "arquitectura"
+![alt text](../img/Arquitectura-Ansible.png "arquitectura")
 
 La màquina que realitza la tasca de controlador reconeix als altres nodes mitjançant un inventari, que, per organitzar-ho fa un desplegament de mòduls sobre el protocol SSH, aquest desplegament fa que els mòduls desplegats no siguin controlats pel controlador, sinó que **és la mateixa màquina remota la que s'encarrega de fer-ho** d'aquesta manera la **màquina local no consumeix recursos ni processos executant-se en segon pla.**
 
