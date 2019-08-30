@@ -232,3 +232,8 @@ Un cop finalitzat l'instalació del nostre lloc amb WordPress només cal accedir
 ![alt text](../img/wordpress2.png "wordpress2")
 
 Configurar el nom del nostre lloc amb el nom que volguem i ja poden administrar el nostre lloc creat amb el CMS WordPress.
+
+I amb aquest procès ja tindrem el WordPress instal·lat i llest, amb una base de dades, un servidor de càrrega, i dos servidors web.
+
+![alt text](../img/wordpress3.png "wordpress3")
+
