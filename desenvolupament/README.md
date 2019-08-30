@@ -203,6 +203,7 @@ Un cop hem comprobat que la base de dades s'ha creat correctament, procedirem a 
 
 [Condifuració de les tasques del Playbook per la BBDD](../annexos/#mysql)
 
+<a name="wordpress"></a>
 ## 6. Instal·lació i configuració de WordPress
 
 Per instal·lar el WordPress vaig tenir que descarregar-ho del [repositori oficial](https://es.wordpress.org/download/) de WordPress i implementar-ho en els dos servidors web amb Apache que ja tenim. 
