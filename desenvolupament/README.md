@@ -53,7 +53,66 @@ Fitxer `/etc/ansible/hosts`
 
 __Estructura del nostre sistema de fitxers__
 
-estructurafinal.png
+```
+.
+├── ansible.cfg                   ### Fitxer de configuració de Ansible.
+├── bbddservers.yml
+├── group_vars                    ### Variables en cojunt que compartiram els servidors, com per exemple els dos webservers.
+│   ├── all.yml
+│   ├── bbddservers.yml
+│   ├── loadbalancers.yml
+│   └── webservers.yml
+├── hosts                         ### Inventari de Ansible amb els nostrs hosts.
+├── hosts_vars                    ### Variables individuals dels nostres servidors.
+│   ├── bbddserver.yml
+│   ├── loadbalancer.yml
+│   ├── webserver-one.yml
+│   └── webserver-two.yml
+├── loadbalancers.yml
+├── logs
+│   └── ansible.log
+├── roles                         ### Configuració de totes els nostres rols amb les seves carpetes que actuaram com a tasques.
+│   ├── apache                    ### Rol de apache
+│   │   ├── defaults
+│   │   │   └── main.yml
+│   │   ├── handlers
+│   │   │   └── main.yml
+│   │   ├── tasks
+│   │   │   └── main.yml
+│   │   └── templates
+│   │       └── vhosts.conf.j2
+│   ├── haproxy                   ### Rol de HAProxy
+│   │   ├── defaults
+│   │   │   └── main.yml
+│   │   ├── handlers
+│   │   │   └── main.yml
+│   │   ├── tasks
+│   │   │   └── main.yml
+│   │   └── templates
+│   │       └── haproxy.cfg.j2
+│   ├── mysql                     ### Rol MySQL
+│   │   ├── defaults
+│   │   │   └── main.yml
+│   │   ├── handlers
+│   │   │   └── main.yml
+│   │   ├── tasks
+│   │   │   └── main.yml
+│   │   └── templates
+│   │       └── mysqld.conf.j2
+│   ├── php                       ### Rol PHP
+│   │   ├── defaults
+│   │   │   └── main.yml
+│   │   └── tasks
+│   │       └── main.yml
+│   └── wordpress                 ### Rol de WordPress
+│       ├── defaults
+│       │   └── main.yml
+│       ├── tasks
+│       │   └── main.yml
+│       └── templates
+│           └── wp-config.php.j2
+└── webservers.yml
+```
 
 __Instal·lació del nostre balancejador de càrrega__
 
