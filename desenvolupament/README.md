@@ -49,7 +49,7 @@ Dintre del fitxer `hosts` que serà el nostre [inventari](/Introduccio/#hostsigr
 
 Fitxer `/etc/ansible/hosts`
 
-hosts.png
+![alt text](../img/hosts.png "hosts")
 
 __Estructura del nostre sistema de fitxers__
 
@@ -70,7 +70,7 @@ Per fer-ho he tingut que crear un rol anomenat `haproxy` on he posat el següent
 ...
 ```
 
-loadbalancer1.png
+![alt text](../img/loadbalancer1.png "loadbalancer1")
 
 [Més informació sobre l'instal·lació d'HAProxy.](../annexos/#loadbalancer)
 
@@ -78,7 +78,7 @@ Un cop tenim el HAProxy configurat només tenim que anar a la següent url per v
 
 http://192.168.10.101/haproxy?stats
 
-loadbalancer2.png
+![alt text](../img/loadbalancer2.png "loadbalancer2")
 
 Com podem veure els nostres dos serveis web es troben _DOWN_ això es perquè encara no tenim cap servidor web configurat.
 
@@ -99,23 +99,23 @@ Semblant a l'instal·lació del servidor de càrrega he creat un rol amb el nom 
 ...
 ```
 
-webservers1.png
+![alt text](../img/webserver1.png "webserver1")
 
 Comproven que càrrega els nostres llocs amb la pàgina per defecte de Apache:
 
-webservers2.png
+![alt text](../img/webserver2.png "webserver2")
 
-webservers3.png
+![alt text](../img/webserver3.png "webserver3")
 
 Instal·lació de totes les tasques per poder configurar el nostre Apache:
 
-webservers4.png
+![alt text](../img/webserver4.png "webserver4")
 
 [Més informació sobre la configuració i instal·lació del nostres servidors Apache.](../annexos/#webserversapache)
 
 Instal·lació del rol de PHP en el nostre servidor:
 
-php1.png
+![alt text](../img/php1.png "php1")
 
 [Configuració dels fitxers d'instal·lació de PHP.](../annexos/#php)
 
@@ -136,11 +136,11 @@ Per crear la nostra infraestructura amb WordPress es necessari tenir una base de
 ...
 ```
 
-bbdd1.png
+![alt text](../img/bbdd1.png "bbdd1")
 
 Un cop hem comprobat que la base de dades s'ha creat correctament, procedirem a actualitzar el fitxer mysqld.conf, juntament amb el my.cnf, actualitzar la contrasenya `root` per la nostra BBDD, crear la nova base de dades per el WordPress i l'usuari per defecte.
 
-bbdd2.png
+![alt text](../img/bbdd2.png "bbdd2")
 
 [Condifuració de les tasques del Playbook per la BBDD](../annexos/#mysql)
 
@@ -164,12 +164,12 @@ Aquest rol ho he desenvolupat amb les seves tasques, variables per defecte, i pl
 
 En la configuració podem observar les tasques a realitzar, com instal·lar el paquet Unzip que no ve en Ubuntu 16.04 per defecte, la comprobació si el WordPress ja es troba instal·lat, descarregar-ho i copiar el nostre fitxer Jina2 `wp-config.php.j2` cap als nostres servidors web per aplicar-hi les configuracions a nivell de usuario, password, i bbdd.
 
-wordpress1.png
+![alt text](../img/wordpress1.png "wordpress1")
 
 [Configuració de WordPress.](/annexos/#wordpress)
 
 Un cop finalitzat l'instalació del nostre lloc amb WordPress només cal accedir cap a qualsevol de les nostres IPs **192.168.10.11, 192.168.10.12**:
 
-wordpress2.png
+![alt text](../img/wordpress2.png "wordpress2")
 
 Configurar el nom del nostre lloc amb el nom que volguem i ja poden administrar el nostre lloc creat amb el CMS WordPress.
