@@ -510,11 +510,13 @@ A més també podem indicar l'ordre a seguir quan executen les tasques en els no
 
 En Ansible els Handlers ens serveixen per poder gestionar les accions de les nostres tasques i així poder modificar els resultats de les nostres accions.
 
-Aquesta acció són llançades al final de cadascuna de les nostres _plays_, si Ansible detecta que hem de reiniciar més d'una vegada només s'executaran un sol cop encara que és cridem vàries vegades.
+Aquesta acció són llançades al final de cadascuna de les nostres _plays_, si Ansible detecta que hem de reiniciar més d'una vegada només s'executaran un sol cop encara que és cridim vàries vegades.
 
-En el següent exemple nosaltres tenim un servidor sense l'Apache configurat, amb el Handler que hem creat podem llençar una notificació i reiniciar el nostre servei un sol cop.
+En el següent exemple nosaltres tenim un servidor sense l'Apache configurat, amb el Handler que hem creat podem llençar una notificació(notify) i reiniciar el nostre servei un sol cop.
 
 ![alt text](../img/43.png "43")
+
+El handler escolatarà el `listen`, o en el cas dels rols serà el `name` del mateix Handler que actuarà com a `listen`.
 
 <a name="inventaris"></a>  
 ## 4. Inventaris
