@@ -1,6 +1,6 @@
 ## Objectiu
 
-L'objectiu d'aquest treball ha sigut i ha estat adquirir més coneximent d'aquesta nova infraestructura com es Ansible, 
+L'objectiu d'aquest treball ha estat adquirir més coneximent d'aquesta nova infraestructura com es Ansible, 
 ja que avui en dia el tema de la organització i desplegament de diferentes nodes de forma automàtica i mantenir-ho de forma automàtica es 
 el futur que s'ens presenta.
 
