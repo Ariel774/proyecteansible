@@ -11,13 +11,13 @@
 <a name="objectiu"></a>
 ## 1. Objectiu
 
-L' objectiu del nostre projecte es poder aprendre sobre aquesta eina d'orquestació anomenada Ansible que es troba molt demandada a causa de la seva potència i la seva facilitat en la gestió i configuració de servidors. Amb aquest software replicarem una estructura web i per fer-ho cal assolir els següents objectius:
+L'objectiu del nostre projecte és poder aprendre sobre aquesta eina d'orquestació anomenada Ansible que es troba molt demandada a causa de la seva potència i la seva facilitat en la gestió i configuració de servidors. Amb aquest software replicarem una estructura web i per fer-ho cal assolir els següents objectius:
 
-- L'implementació d' un servidor de carrega.
-- L'instal·lació de dos servidos web amb PHP i Apache per implementar un WordPress.
+- La implementació d'un servidor de càrrega.
+- La instal·lació de dos servidors web amb PHP i Apache per implementar un WordPress.
 - Instal·lar un servidor de base de dades.
 
-L'arquitectura que volem contruir serà la següent:
+L'arquitectura que volem construir serà la següent:
 
 ![alt text](../img/8.png "8")
 
@@ -35,9 +35,9 @@ Per fer-ho primerament he hagut de crear en una zona de proves amb 1 controlador
 <a name="conf"></a>
 ## 3. Creació de rols i configuració de màquina
 
-Un cop hem pogut comprovar que les màquines han sigut creades segons els nostres fitxers *Vagrantfile* he tingut que [habilitar el SSH i l'autorització del usuari root](/annexos/#ssh-passwd) de forma remota per poder connectarnos amb Ansible amb el mateix ID a tots els nostres servidors.
+Un cop hem pogut comprovar que les màquines han sigut creades segons els nostres fitxers *Vagrantfile* he tingut que [habilitar el SSH i l'autorització de l'usuari root](/annexos/#ssh-passwd) de forma remota per poder connectar-nos amb Ansible amb el mateix ID a tots els nostres servidors.
 
-Havent acabat la configuració prèvia de nostres maquines podem procedir a entrar dins del nostre entorn Ansible, no sense abans comprovar la correcta sincronització de data i hora i la disponibilitat dels nostres recursos, podem trobar més informació sobre les comandes bàsiques [AD-HOC](/annexos/#comandasbasicas).
+Havent acabat la configuració prèvia de les nostres màquines podem procedir a entrar dins del nostre entorn Ansible, no sense abans comprovar la correcta sincronització de data i hora i la disponibilitat dels nostres recursos, podem trobar més informació sobre les comandes bàsiques [AD-HOC](/annexos/#comandasbasicas).
 
 ![alt text](../img/19.png "19")
 
@@ -222,7 +222,7 @@ Com a últim punt, per instal·lar i configurar el nostre WordPress i configurar
 ```
 Aquest rol ho he desenvolupat amb les seves tasques, variables per defecte, i plantilla.
 
-En la configuració podem observar les tasques a realitzar, com instal·lar el paquet Unzip que no ve en Ubuntu 16.04 per defecte, la comprobació si el WordPress ja es troba instal·lat, descarregar-ho i copiar el nostre fitxer Jina2 `wp-config.php.j2` cap als nostres servidors web per aplicar-hi les configuracions a nivell de usuario, password, i bbdd.
+En la configuració podem observar les tasques a realitzar, com instal·lar el paquet Unzip que no ve en Ubuntu 16.04 per defecte, la comprovació si el WordPress ja es troba instal·lat, descarregar-ho i copiar el nostre fitxer Jinja2 'wp-config.php.j2' cap als nostres servidors web per aplicar-hi les configuracions a escala de usuario, password, i bbdd.
 
 ![alt text](../img/wordpress1.png "wordpress1")
 
