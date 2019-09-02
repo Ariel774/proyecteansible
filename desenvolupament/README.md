@@ -26,7 +26,7 @@ Per poder desenvolupar el nostre projecte farem ús de Vagrant per crear el nost
 <a name="vagrant"></a>
 ## 2. Vagrant
 
-Per començar a desenvolupar aquest projecte orientat a la pràctica he utilitzat un recurs molt innovador per crear, modificar i gestionar les meves màquines virtuals a partir de Virtual-Box, això ho he fet amb [Vagrant](https://www.conasa.es/blog/vagrant-la-herramienta-para-crear-entornos-de-desarrollo-reproducibles/).
+Per començar a desenvolupar aquest projecte orientat a la pràctica he utilitzat un recurs molt innovador per crear, modificar i gestionar les meves màquines virtuals a partir de Virtual-Box, això ho he fet amb Vagrant una eina que ens permetrà pujar màquines de forma molt sencilla amb un fitxer de configuració *vagranfile*.
 
 ![alt text](../img/Vagrant.png "Vagrant")
 
