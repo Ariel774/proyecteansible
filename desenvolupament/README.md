@@ -179,7 +179,7 @@ Instal·lació del rol de PHP en el nostre servidor:
 [Configuració dels fitxers d'instal·lació de PHP.](../annexos/#php)
 
 <a name="confmysql"></a>
-## 5. Instal·lació i configuració de MySQL__
+## 5. Instal·lació i configuració de MySQL
 
 Per crear la nostra infraestructura amb WordPress es necessari tenir una base de dades instal·lada al notre servidor `192.168.10.10`.
 
